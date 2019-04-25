@@ -12,6 +12,8 @@
 		2A0C40C1227228D000ED8CBE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A0C40C0227228D000ED8CBE /* Assets.xcassets */; };
 		2A0C40C4227228D000ED8CBE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A0C40C2227228D000ED8CBE /* Main.storyboard */; };
 		2A0C40D0227228D000ED8CBE /* dlabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0C40CF227228D000ED8CBE /* dlabTests.swift */; };
+		2A0C40DB22722E0700ED8CBE /* SNP.vcf in Resources */ = {isa = PBXBuildFile; fileRef = 2A0C40DA22722E0700ED8CBE /* SNP.vcf */; };
+		2A0C40DD22724A5F00ED8CBE /* dlab in Resources */ = {isa = PBXBuildFile; fileRef = 2A0C40DC22724A5F00ED8CBE /* dlab */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +37,8 @@
 		2A0C40CB227228D000ED8CBE /* dlabTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = dlabTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A0C40CF227228D000ED8CBE /* dlabTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dlabTests.swift; sourceTree = "<group>"; };
 		2A0C40D1227228D000ED8CBE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A0C40DA22722E0700ED8CBE /* SNP.vcf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = SNP.vcf; sourceTree = "<group>"; };
+		2A0C40DC22724A5F00ED8CBE /* dlab */ = {isa = PBXFileReference; lastKnownFileType = folder; name = dlab; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +86,8 @@
 				2A0C40C2227228D000ED8CBE /* Main.storyboard */,
 				2A0C40C5227228D000ED8CBE /* Info.plist */,
 				2A0C40C6227228D000ED8CBE /* dlab.entitlements */,
+				2A0C40DA22722E0700ED8CBE /* SNP.vcf */,
+				2A0C40DC22724A5F00ED8CBE /* dlab */,
 			);
 			path = dlab;
 			sourceTree = "<group>";
@@ -176,8 +182,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A0C40DB22722E0700ED8CBE /* SNP.vcf in Resources */,
 				2A0C40C1227228D000ED8CBE /* Assets.xcassets in Resources */,
 				2A0C40C4227228D000ED8CBE /* Main.storyboard in Resources */,
+				2A0C40DD22724A5F00ED8CBE /* dlab in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
