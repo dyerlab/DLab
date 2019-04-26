@@ -19,7 +19,6 @@
 		2A2E3820227330CA00CF4C06 /* Frequencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E381F227330CA00CF4C06 /* Frequencies.swift */; };
 		2A2E3821227330CA00CF4C06 /* Frequencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A2E381F227330CA00CF4C06 /* Frequencies.swift */; };
 		2AF1A4862273705700DF5527 /* FrequenciesTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF1A4852273705700DF5527 /* FrequenciesTest.swift */; };
-		2AF1A488227388B300DF5527 /* LocusFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF1A487227388B300DF5527 /* LocusFile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +44,6 @@
 		2A2E381D22732EFB00CF4C06 /* LocusTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusTest.swift; sourceTree = "<group>"; };
 		2A2E381F227330CA00CF4C06 /* Frequencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequencies.swift; sourceTree = "<group>"; };
 		2AF1A4852273705700DF5527 /* FrequenciesTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequenciesTest.swift; sourceTree = "<group>"; };
-		2AF1A487227388B300DF5527 /* LocusFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusFile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -92,7 +90,6 @@
 				2A2E37FF227328ED00CF4C06 /* Info.plist */,
 				2A2E38152273290F00CF4C06 /* Genotype.swift */,
 				2A2E381A22732E2800CF4C06 /* Locus.swift */,
-				2AF1A487227388B300DF5527 /* LocusFile.swift */,
 				2A2E381F227330CA00CF4C06 /* Frequencies.swift */,
 			);
 			path = DLGeneKit;
@@ -219,7 +216,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2AF1A488227388B300DF5527 /* LocusFile.swift in Sources */,
 				2A2E381B22732E2800CF4C06 /* Locus.swift in Sources */,
 				2A2E38162273290F00CF4C06 /* Genotype.swift in Sources */,
 				2A2E3820227330CA00CF4C06 /* Frequencies.swift in Sources */,
