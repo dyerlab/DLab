@@ -28,6 +28,9 @@
 		2ABF472D227475E10092FBC9 /* IndividualTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF472C227475E10092FBC9 /* IndividualTests.swift */; };
 		2ABF472F227478A30092FBC9 /* CoordinateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF472E227478A30092FBC9 /* CoordinateTests.swift */; };
 		2ABF473022747A010092FBC9 /* CLLocationCoordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF4727227472BF0092FBC9 /* CLLocationCoordinate2D.swift */; };
+		2ABF473622747C0C0092FBC9 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF473522747C0C0092FBC9 /* Matrix.swift */; };
+		2ABF473722747C0C0092FBC9 /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF473522747C0C0092FBC9 /* Matrix.swift */; };
+		2ABF473C2274884F0092FBC9 /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ABF473B2274884F0092FBC9 /* MatrixTests.swift */; };
 		2AF1A4862273705700DF5527 /* FrequenciesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2AF1A4852273705700DF5527 /* FrequenciesTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -59,6 +62,8 @@
 		2ABF4729227473260092FBC9 /* Coordiante.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordiante.swift; sourceTree = "<group>"; };
 		2ABF472C227475E10092FBC9 /* IndividualTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualTests.swift; sourceTree = "<group>"; };
 		2ABF472E227478A30092FBC9 /* CoordinateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateTests.swift; sourceTree = "<group>"; };
+		2ABF473522747C0C0092FBC9 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		2ABF473B2274884F0092FBC9 /* MatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
 		2AF1A4852273705700DF5527 /* FrequenciesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequenciesTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -102,15 +107,10 @@
 		2A2E37FD227328ED00CF4C06 /* DLGeneKit */ = {
 			isa = PBXGroup;
 			children = (
-				2ABF4726227472AE0092FBC9 /* Extensions */,
+				2ABF4726227472AE0092FBC9 /* Base */,
+				2ABF473122747BCE0092FBC9 /* Genetic */,
 				2A2E37FE227328ED00CF4C06 /* DLGeneKit.h */,
 				2A2E37FF227328ED00CF4C06 /* Info.plist */,
-				2A2E38152273290F00CF4C06 /* Genotype.swift */,
-				2A2E381A22732E2800CF4C06 /* Locus.swift */,
-				2A2E381F227330CA00CF4C06 /* Frequencies.swift */,
-				2ABF472322746A550092FBC9 /* Individual.swift */,
-				2ABF4729227473260092FBC9 /* Coordiante.swift */,
-				2A85B7272273AEDA00AD6C7B /* DataSet.swift */,
 			);
 			path = DLGeneKit;
 			sourceTree = "<group>";
@@ -125,16 +125,31 @@
 				2AF1A4852273705700DF5527 /* FrequenciesTests.swift */,
 				2ABF472C227475E10092FBC9 /* IndividualTests.swift */,
 				2ABF472E227478A30092FBC9 /* CoordinateTests.swift */,
+				2ABF473B2274884F0092FBC9 /* MatrixTests.swift */,
 			);
 			path = DLGeneKitTests;
 			sourceTree = "<group>";
 		};
-		2ABF4726227472AE0092FBC9 /* Extensions */ = {
+		2ABF4726227472AE0092FBC9 /* Base */ = {
 			isa = PBXGroup;
 			children = (
 				2ABF4727227472BF0092FBC9 /* CLLocationCoordinate2D.swift */,
+				2ABF473522747C0C0092FBC9 /* Matrix.swift */,
 			);
-			path = Extensions;
+			path = Base;
+			sourceTree = "<group>";
+		};
+		2ABF473122747BCE0092FBC9 /* Genetic */ = {
+			isa = PBXGroup;
+			children = (
+				2A2E38152273290F00CF4C06 /* Genotype.swift */,
+				2A2E381A22732E2800CF4C06 /* Locus.swift */,
+				2A2E381F227330CA00CF4C06 /* Frequencies.swift */,
+				2ABF472322746A550092FBC9 /* Individual.swift */,
+				2ABF4729227473260092FBC9 /* Coordiante.swift */,
+				2A85B7272273AEDA00AD6C7B /* DataSet.swift */,
+			);
+			path = Genetic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +265,7 @@
 				2A2E381B22732E2800CF4C06 /* Locus.swift in Sources */,
 				2ABF472A227473260092FBC9 /* Coordiante.swift in Sources */,
 				2A2E38162273290F00CF4C06 /* Genotype.swift in Sources */,
+				2ABF473622747C0C0092FBC9 /* Matrix.swift in Sources */,
 				2A2E3820227330CA00CF4C06 /* Frequencies.swift in Sources */,
 				2ABF472422746A550092FBC9 /* Individual.swift in Sources */,
 				2ABF4728227472BF0092FBC9 /* CLLocationCoordinate2D.swift in Sources */,
@@ -260,6 +276,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2ABF473C2274884F0092FBC9 /* MatrixTests.swift in Sources */,
+				2ABF473722747C0C0092FBC9 /* Matrix.swift in Sources */,
 				2A85B7292273AEDA00AD6C7B /* DataSet.swift in Sources */,
 				2ABF472B227473260092FBC9 /* Coordiante.swift in Sources */,
 				2A2E381C22732E2800CF4C06 /* Locus.swift in Sources */,
