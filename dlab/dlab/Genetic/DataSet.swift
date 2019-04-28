@@ -7,13 +7,17 @@
 //
 
 import Foundation
+import Cocoa
 
 class DataSet {
     var loci: [String:Locus]
     var individual: [Individual]
+    var species: String = ""
+    var path: String = ""
     
     init() {
         loci = [String:Locus]()
         individual = [Individual]()
     }
+    
 }

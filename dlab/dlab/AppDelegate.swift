@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  dlab
+//  DLab
 //
-//  Created by Rodney Dyer on 4/25/19.
+//  Created by Rodney Dyer on 4/28/19.
 //  Copyright © 2019 Rodney Dyer. All rights reserved.
 //
 

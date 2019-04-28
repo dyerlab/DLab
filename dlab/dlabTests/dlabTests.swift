@@ -1,15 +1,15 @@
 //
-//  dlabTests.swift
-//  dlabTests
+//  DLabTests.swift
+//  DLabTests
 //
-//  Created by Rodney Dyer on 4/25/19.
+//  Created by Rodney Dyer on 4/28/19.
 //  Copyright © 2019 Rodney Dyer. All rights reserved.
 //
 
 import XCTest
-@testable import dlab
+@testable import DLab
 
-class dlabTests: XCTestCase {
+class DLabTests: XCTestCase {
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
