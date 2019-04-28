@@ -13,6 +13,14 @@ class DataViewVC: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
+        
+        print("DataViewVC::viewDidLoad")
     }
     
+    
+    
+    
 }
+
+
+

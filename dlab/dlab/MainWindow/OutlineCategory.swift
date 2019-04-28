@@ -10,4 +10,23 @@ import Cocoa
 
 class OutlineCategory: NSObject {
 
+    let name: String
+    var items: [OutlineItem]
+    
+    init(name: String) {
+        self.name = name
+        self.items = [OutlineItem]()
+    }
+}
+
+
+
+class OutlineItem: NSObject {
+    
+    let name: String
+    
+    init(name: String) {
+        self.name = name
+    }
+    
 }

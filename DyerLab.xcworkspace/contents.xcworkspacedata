@@ -2,9 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:DLTester/DLTester.xcodeproj">
+      location = "group:DLab/DLab.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:DLGeneKit/DLGeneKit.xcodeproj">
+      location = "group:DLTester/DLTester.xcodeproj">
    </FileRef>
 </Workspace>

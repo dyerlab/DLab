@@ -13,7 +13,28 @@ class MainWindowController: NSWindowController {
     override func windowDidLoad() {
         super.windowDidLoad()
     
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+        print("MainWindowController::viewDidLoad")
     }
 
+}
+
+
+
+
+extension MainWindowController {
+    
+    @IBAction func switchToDataViewOne(_ sender: AnyObject ) {
+        print("Asking to switch to data view one")
+    }
+    
+    
+    @IBAction func switchToDataViewTwo(_ sender: AnyObject ) {
+        print("Asking to switch to data view two")
+    }
+    
+    
+    @IBAction func switchToDataViewThree(_ sender: AnyObject ) {
+        print("Asking to switch to data view three")
+    }
+    
 }

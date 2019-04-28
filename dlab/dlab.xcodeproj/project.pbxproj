@@ -7,12 +7,46 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A19FB832275ED9200B7D97D /* Genotype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6512275ED1000374CA5 /* Genotype.swift */; };
+		2A19FB842275ED9200B7D97D /* Genotype.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6512275ED1000374CA5 /* Genotype.swift */; };
+		2A19FB852275ED9A00B7D97D /* Locus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6522275ED1000374CA5 /* Locus.swift */; };
+		2A19FB862275ED9A00B7D97D /* Frequencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6532275ED1000374CA5 /* Frequencies.swift */; };
+		2A19FB872275ED9A00B7D97D /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6542275ED1000374CA5 /* Individual.swift */; };
+		2A19FB882275ED9A00B7D97D /* Coordiante.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6552275ED1000374CA5 /* Coordiante.swift */; };
+		2A19FB892275ED9A00B7D97D /* DataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6562275ED1000374CA5 /* DataSet.swift */; };
+		2A19FB8A2275ED9B00B7D97D /* Locus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6522275ED1000374CA5 /* Locus.swift */; };
+		2A19FB8B2275ED9B00B7D97D /* Frequencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6532275ED1000374CA5 /* Frequencies.swift */; };
+		2A19FB8C2275ED9B00B7D97D /* Individual.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6542275ED1000374CA5 /* Individual.swift */; };
+		2A19FB8D2275ED9B00B7D97D /* Coordiante.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6552275ED1000374CA5 /* Coordiante.swift */; };
+		2A19FB8E2275ED9B00B7D97D /* DataSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6562275ED1000374CA5 /* DataSet.swift */; };
+		2A19FB8F2275EDA100B7D97D /* DataSetDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB64E2275ED1000374CA5 /* DataSetDialogController.swift */; };
+		2A19FB902275EDA100B7D97D /* DataSetDialogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A4EB64F2275ED1000374CA5 /* DataSetDialogController.xib */; };
+		2A19FB912275EDA200B7D97D /* DataSetDialogController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB64E2275ED1000374CA5 /* DataSetDialogController.swift */; };
+		2A19FB922275EDA200B7D97D /* DataSetDialogController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2A4EB64F2275ED1000374CA5 /* DataSetDialogController.xib */; };
+		2A19FB932275EDA700B7D97D /* CLLocationCoordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB64A2275ED1000374CA5 /* CLLocationCoordinate2D.swift */; };
+		2A19FB942275EDA700B7D97D /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB64B2275ED1000374CA5 /* Matrix.swift */; };
+		2A19FB952275EDA700B7D97D /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB64C2275ED1000374CA5 /* DataProvider.swift */; };
+		2A19FB962275EDA800B7D97D /* CLLocationCoordinate2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB64A2275ED1000374CA5 /* CLLocationCoordinate2D.swift */; };
+		2A19FB972275EDA800B7D97D /* Matrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB64B2275ED1000374CA5 /* Matrix.swift */; };
+		2A19FB982275EDA800B7D97D /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB64C2275ED1000374CA5 /* DataProvider.swift */; };
+		2A19FB9A2275F5D100B7D97D /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19FB992275F5D100B7D97D /* Array.swift */; };
+		2A19FB9B2275F5D100B7D97D /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19FB992275F5D100B7D97D /* Array.swift */; };
+		2A19FBA42275FD1200B7D97D /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19FBA32275FD1200B7D97D /* MainWindowController.swift */; };
+		2A19FBA62276001200B7D97D /* OutlineViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19FBA52276001200B7D97D /* OutlineViewVC.swift */; };
+		2A19FBA82276003000B7D97D /* DataViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19FBA72276003000B7D97D /* DataViewVC.swift */; };
+		2A19FBAA227604F000B7D97D /* OutlineCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19FBA9227604F000B7D97D /* OutlineCategory.swift */; };
+		2A19FBAB227604F000B7D97D /* OutlineCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19FBA9227604F000B7D97D /* OutlineCategory.swift */; };
 		2A4EB6072275ECA200374CA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6062275ECA200374CA5 /* AppDelegate.swift */; };
-		2A4EB6092275ECA200374CA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6082275ECA200374CA5 /* ViewController.swift */; };
 		2A4EB60B2275ECA300374CA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A4EB60A2275ECA300374CA5 /* Assets.xcassets */; };
 		2A4EB60E2275ECA300374CA5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A4EB60C2275ECA300374CA5 /* Main.storyboard */; };
 		2A4EB61A2275ECA300374CA5 /* DLabTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6192275ECA300374CA5 /* DLabTests.swift */; };
 		2A4EB6252275ECA300374CA5 /* DLabUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6242275ECA300374CA5 /* DLabUITests.swift */; };
+		2A4EB6442275ED0300374CA5 /* LocusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB63E2275ED0100374CA5 /* LocusTests.swift */; };
+		2A4EB6452275ED0300374CA5 /* FrequenciesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6432275ED0200374CA5 /* FrequenciesTests.swift */; };
+		2A4EB6462275ED0300374CA5 /* CoordinateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6412275ED0200374CA5 /* CoordinateTests.swift */; };
+		2A4EB6472275ED0300374CA5 /* MatrixTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6422275ED0200374CA5 /* MatrixTests.swift */; };
+		2A4EB6482275ED0300374CA5 /* IndividualTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB6402275ED0200374CA5 /* IndividualTests.swift */; };
+		2A4EB6492275ED0300374CA5 /* GenotypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A4EB63F2275ED0200374CA5 /* GenotypeTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,9 +67,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A19FB992275F5D100B7D97D /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
+		2A19FBA32275FD1200B7D97D /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
+		2A19FBA52276001200B7D97D /* OutlineViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineViewVC.swift; sourceTree = "<group>"; };
+		2A19FBA72276003000B7D97D /* DataViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewVC.swift; sourceTree = "<group>"; };
+		2A19FBA9227604F000B7D97D /* OutlineCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineCategory.swift; sourceTree = "<group>"; };
 		2A4EB6032275ECA200374CA5 /* DLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A4EB6062275ECA200374CA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2A4EB6082275ECA200374CA5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		2A4EB60A2275ECA300374CA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2A4EB60D2275ECA300374CA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		2A4EB60F2275ECA300374CA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -46,6 +84,23 @@
 		2A4EB6202275ECA300374CA5 /* DLabUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DLabUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A4EB6242275ECA300374CA5 /* DLabUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DLabUITests.swift; sourceTree = "<group>"; };
 		2A4EB6262275ECA300374CA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2A4EB63E2275ED0100374CA5 /* LocusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocusTests.swift; sourceTree = "<group>"; };
+		2A4EB63F2275ED0200374CA5 /* GenotypeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenotypeTests.swift; sourceTree = "<group>"; };
+		2A4EB6402275ED0200374CA5 /* IndividualTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IndividualTests.swift; sourceTree = "<group>"; };
+		2A4EB6412275ED0200374CA5 /* CoordinateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateTests.swift; sourceTree = "<group>"; };
+		2A4EB6422275ED0200374CA5 /* MatrixTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatrixTests.swift; sourceTree = "<group>"; };
+		2A4EB6432275ED0200374CA5 /* FrequenciesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequenciesTests.swift; sourceTree = "<group>"; };
+		2A4EB64A2275ED1000374CA5 /* CLLocationCoordinate2D.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2D.swift; sourceTree = "<group>"; };
+		2A4EB64B2275ED1000374CA5 /* Matrix.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Matrix.swift; sourceTree = "<group>"; };
+		2A4EB64C2275ED1000374CA5 /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
+		2A4EB64E2275ED1000374CA5 /* DataSetDialogController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSetDialogController.swift; sourceTree = "<group>"; };
+		2A4EB64F2275ED1000374CA5 /* DataSetDialogController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DataSetDialogController.xib; sourceTree = "<group>"; };
+		2A4EB6512275ED1000374CA5 /* Genotype.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Genotype.swift; sourceTree = "<group>"; };
+		2A4EB6522275ED1000374CA5 /* Locus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locus.swift; sourceTree = "<group>"; };
+		2A4EB6532275ED1000374CA5 /* Frequencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Frequencies.swift; sourceTree = "<group>"; };
+		2A4EB6542275ED1000374CA5 /* Individual.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Individual.swift; sourceTree = "<group>"; };
+		2A4EB6552275ED1000374CA5 /* Coordiante.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordiante.swift; sourceTree = "<group>"; };
+		2A4EB6562275ED1000374CA5 /* DataSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +128,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2A19FB9C2275F85000B7D97D /* MainWindow */ = {
+			isa = PBXGroup;
+			children = (
+				2A19FBA32275FD1200B7D97D /* MainWindowController.swift */,
+				2A19FBA52276001200B7D97D /* OutlineViewVC.swift */,
+				2A19FBA72276003000B7D97D /* DataViewVC.swift */,
+				2A19FBA9227604F000B7D97D /* OutlineCategory.swift */,
+			);
+			path = MainWindow;
+			sourceTree = "<group>";
+		};
 		2A4EB5FA2275ECA200374CA5 = {
 			isa = PBXGroup;
 			children = (
@@ -97,7 +163,9 @@
 			isa = PBXGroup;
 			children = (
 				2A4EB6062275ECA200374CA5 /* AppDelegate.swift */,
-				2A4EB6082275ECA200374CA5 /* ViewController.swift */,
+				2A19FB9C2275F85000B7D97D /* MainWindow */,
+				2A4EB64D2275ED1000374CA5 /* Base */,
+				2A4EB6572275ED1000374CA5 /* Genetic */,
 				2A4EB60A2275ECA300374CA5 /* Assets.xcassets */,
 				2A4EB60C2275ECA300374CA5 /* Main.storyboard */,
 				2A4EB60F2275ECA300374CA5 /* Info.plist */,
@@ -111,6 +179,12 @@
 			children = (
 				2A4EB6192275ECA300374CA5 /* DLabTests.swift */,
 				2A4EB61B2275ECA300374CA5 /* Info.plist */,
+				2A4EB63F2275ED0200374CA5 /* GenotypeTests.swift */,
+				2A4EB63E2275ED0100374CA5 /* LocusTests.swift */,
+				2A4EB6432275ED0200374CA5 /* FrequenciesTests.swift */,
+				2A4EB6402275ED0200374CA5 /* IndividualTests.swift */,
+				2A4EB6412275ED0200374CA5 /* CoordinateTests.swift */,
+				2A4EB6422275ED0200374CA5 /* MatrixTests.swift */,
 			);
 			path = DLabTests;
 			sourceTree = "<group>";
@@ -122,6 +196,40 @@
 				2A4EB6262275ECA300374CA5 /* Info.plist */,
 			);
 			path = DLabUITests;
+			sourceTree = "<group>";
+		};
+		2A4EB64D2275ED1000374CA5 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				2A4EB64A2275ED1000374CA5 /* CLLocationCoordinate2D.swift */,
+				2A4EB64B2275ED1000374CA5 /* Matrix.swift */,
+				2A4EB64C2275ED1000374CA5 /* DataProvider.swift */,
+				2A19FB992275F5D100B7D97D /* Array.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		2A4EB6502275ED1000374CA5 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				2A4EB64E2275ED1000374CA5 /* DataSetDialogController.swift */,
+				2A4EB64F2275ED1000374CA5 /* DataSetDialogController.xib */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		2A4EB6572275ED1000374CA5 /* Genetic */ = {
+			isa = PBXGroup;
+			children = (
+				2A4EB6502275ED1000374CA5 /* UI */,
+				2A4EB6512275ED1000374CA5 /* Genotype.swift */,
+				2A4EB6522275ED1000374CA5 /* Locus.swift */,
+				2A4EB6532275ED1000374CA5 /* Frequencies.swift */,
+				2A4EB6542275ED1000374CA5 /* Individual.swift */,
+				2A4EB6552275ED1000374CA5 /* Coordiante.swift */,
+				2A4EB6562275ED1000374CA5 /* DataSet.swift */,
+			);
+			path = Genetic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +337,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2A4EB60B2275ECA300374CA5 /* Assets.xcassets in Resources */,
+				2A19FB902275EDA100B7D97D /* DataSetDialogController.xib in Resources */,
 				2A4EB60E2275ECA300374CA5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -244,6 +353,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A19FB922275EDA200B7D97D /* DataSetDialogController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -254,7 +364,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2A4EB6092275ECA200374CA5 /* ViewController.swift in Sources */,
+				2A19FB872275ED9A00B7D97D /* Individual.swift in Sources */,
+				2A19FB852275ED9A00B7D97D /* Locus.swift in Sources */,
+				2A19FB8F2275EDA100B7D97D /* DataSetDialogController.swift in Sources */,
+				2A19FB932275EDA700B7D97D /* CLLocationCoordinate2D.swift in Sources */,
+				2A19FBA82276003000B7D97D /* DataViewVC.swift in Sources */,
+				2A19FB882275ED9A00B7D97D /* Coordiante.swift in Sources */,
+				2A19FB942275EDA700B7D97D /* Matrix.swift in Sources */,
+				2A19FB952275EDA700B7D97D /* DataProvider.swift in Sources */,
+				2A19FBA42275FD1200B7D97D /* MainWindowController.swift in Sources */,
+				2A19FB862275ED9A00B7D97D /* Frequencies.swift in Sources */,
+				2A19FB9A2275F5D100B7D97D /* Array.swift in Sources */,
+				2A19FBA62276001200B7D97D /* OutlineViewVC.swift in Sources */,
+				2A19FB832275ED9200B7D97D /* Genotype.swift in Sources */,
+				2A19FB892275ED9A00B7D97D /* DataSet.swift in Sources */,
+				2A19FBAA227604F000B7D97D /* OutlineCategory.swift in Sources */,
 				2A4EB6072275ECA200374CA5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -263,7 +387,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A4EB6472275ED0300374CA5 /* MatrixTests.swift in Sources */,
+				2A4EB6492275ED0300374CA5 /* GenotypeTests.swift in Sources */,
+				2A19FB982275EDA800B7D97D /* DataProvider.swift in Sources */,
+				2A19FB9B2275F5D100B7D97D /* Array.swift in Sources */,
+				2A19FB8E2275ED9B00B7D97D /* DataSet.swift in Sources */,
+				2A19FB8B2275ED9B00B7D97D /* Frequencies.swift in Sources */,
+				2A4EB6442275ED0300374CA5 /* LocusTests.swift in Sources */,
+				2A19FB8A2275ED9B00B7D97D /* Locus.swift in Sources */,
+				2A4EB6482275ED0300374CA5 /* IndividualTests.swift in Sources */,
+				2A19FB842275ED9200B7D97D /* Genotype.swift in Sources */,
 				2A4EB61A2275ECA300374CA5 /* DLabTests.swift in Sources */,
+				2A4EB6452275ED0300374CA5 /* FrequenciesTests.swift in Sources */,
+				2A19FBAB227604F000B7D97D /* OutlineCategory.swift in Sources */,
+				2A4EB6462275ED0300374CA5 /* CoordinateTests.swift in Sources */,
+				2A19FB972275EDA800B7D97D /* Matrix.swift in Sources */,
+				2A19FB8C2275ED9B00B7D97D /* Individual.swift in Sources */,
+				2A19FB8D2275ED9B00B7D97D /* Coordiante.swift in Sources */,
+				2A19FB962275EDA800B7D97D /* CLLocationCoordinate2D.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -271,6 +412,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A19FB912275EDA200B7D97D /* DataSetDialogController.swift in Sources */,
 				2A4EB6252275ECA300374CA5 /* DLabUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -430,6 +572,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dyerlab.DLab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -449,6 +592,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.dyerlab.DLab;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
