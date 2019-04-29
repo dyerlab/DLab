@@ -32,7 +32,6 @@
 		2A19FB9A2275F5D100B7D97D /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19FB992275F5D100B7D97D /* Array.swift */; };
 		2A19FB9B2275F5D100B7D97D /* Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19FB992275F5D100B7D97D /* Array.swift */; };
 		2A19FBA42275FD1200B7D97D /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19FBA32275FD1200B7D97D /* MainWindowController.swift */; };
-		2A19FBA62276001200B7D97D /* OutlineViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19FBA52276001200B7D97D /* OutlineViewVC.swift */; };
 		2A19FBA82276003000B7D97D /* DataViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19FBA72276003000B7D97D /* DataViewVC.swift */; };
 		2A19FBAA227604F000B7D97D /* OutlineCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19FBA9227604F000B7D97D /* OutlineCategory.swift */; };
 		2A19FBAB227604F000B7D97D /* OutlineCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A19FBA9227604F000B7D97D /* OutlineCategory.swift */; };
@@ -69,7 +68,6 @@
 /* Begin PBXFileReference section */
 		2A19FB992275F5D100B7D97D /* Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.swift; sourceTree = "<group>"; };
 		2A19FBA32275FD1200B7D97D /* MainWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
-		2A19FBA52276001200B7D97D /* OutlineViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineViewVC.swift; sourceTree = "<group>"; };
 		2A19FBA72276003000B7D97D /* DataViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataViewVC.swift; sourceTree = "<group>"; };
 		2A19FBA9227604F000B7D97D /* OutlineCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineCategory.swift; sourceTree = "<group>"; };
 		2A4EB6032275ECA200374CA5 /* DLab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DLab.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -132,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				2A19FBA32275FD1200B7D97D /* MainWindowController.swift */,
-				2A19FBA52276001200B7D97D /* OutlineViewVC.swift */,
 				2A19FBA72276003000B7D97D /* DataViewVC.swift */,
 				2A19FBA9227604F000B7D97D /* OutlineCategory.swift */,
 			);
@@ -375,7 +372,6 @@
 				2A19FBA42275FD1200B7D97D /* MainWindowController.swift in Sources */,
 				2A19FB862275ED9A00B7D97D /* Frequencies.swift in Sources */,
 				2A19FB9A2275F5D100B7D97D /* Array.swift in Sources */,
-				2A19FBA62276001200B7D97D /* OutlineViewVC.swift in Sources */,
 				2A19FB832275ED9200B7D97D /* Genotype.swift in Sources */,
 				2A19FB892275ED9A00B7D97D /* DataSet.swift in Sources */,
 				2A19FBAA227604F000B7D97D /* OutlineCategory.swift in Sources */,
