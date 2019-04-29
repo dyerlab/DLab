@@ -8,10 +8,8 @@
 
 import Cocoa
 
-class DataViewVC: NSViewController {
+class CategoryViewVC: NSViewController {
 
-    @IBOutlet weak var collectionView: NSCollectionView!
-    @IBOutlet weak var splitView: NSSplitView!
     @IBOutlet weak var sourceListView: NSOutlineView!
     
     var categories: [OutlineCategory] = []
@@ -26,8 +24,6 @@ class DataViewVC: NSViewController {
         let summaryCategory = OutlineCategory(name: "Summary")
         let otherCategory = OutlineCategory(name: "Other")
         
-        categories.append( OutlineCategory(name: "") )
-        
         categories.append( summaryCategory )
         categories.append( otherCategory )
         summaryCategory.items.append( OutlineItem(name: "Data Overview") )
@@ -38,12 +34,14 @@ class DataViewVC: NSViewController {
         sourceListView?.delegate = self
         sourceListView?.dataSource = self
         sourceListView?.expandItem(nil, expandChildren: true)
+        
+
     }
 }
 
 
 
-extension DataViewVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
+extension CategoryViewVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
     
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
         if let item: Any = item {
@@ -120,31 +118,8 @@ extension DataViewVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
         }
     }
     
-    func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        switch item {
-        case let category as OutlineCategory:
-            return category.name.count == 0 ? false : true
-        default:
-            return true
-        }
-    }
     
-    
-    func outlineViewSelectionDidChange(_ notification: Notification) {
-        print(String(describing:notification) )
-        
-        let selectedIndex = (notification.object as! NSOutlineView).selectedRow
-        let object: Any? = (notification.object as! NSOutlineView).item(atRow: selectedIndex)
-        if (object is OutlineItem ) {
-            print("Item selected is \( (object as! OutlineItem).name)")
-            
-        }
-        else {
-            print("Do nothing, do not respond to clicks on headers")
-        }
-        
-        
-    }
+
     
     
     

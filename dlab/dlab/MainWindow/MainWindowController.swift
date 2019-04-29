@@ -14,6 +14,7 @@ class MainWindowController: NSWindowController {
         super.windowDidLoad()
     
         print("MainWindowController::viewDidLoad")
+        window?.backgroundColor = NSColor.controlBackgroundColor
     }
 
 }
