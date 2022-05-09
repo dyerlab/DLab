@@ -1,7 +1,9 @@
 import XCTest
 @testable import DLab
 
+/*
 final class DLabTests: XCTestCase {
+    
     func testExample() throws {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct
@@ -9,3 +11,5 @@ final class DLabTests: XCTestCase {
         XCTAssertEqual(DLab().text, "Hello, World!")
     }
 }
+
+*/
