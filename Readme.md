@@ -1,3 +1,3 @@
 # DLab
 
-Population genetics software that does not suck.
+A description of this package.
