@@ -24,6 +24,11 @@ public struct Genotype: Codable, Equatable, CustomStringConvertible {
     public var left: String = ""
     public var right: String = ""
     
+    /// Determines if the genotype is empty
+    public var isEmpty: Bool {
+        return left.isEmpty && right.isEmpty
+    }
+    
     /// Heterozygosity state, must be diploid and alleles are not empty.
     public var isHeterozygote: Bool {
         return self.ploidy == .Diploid && left != right
