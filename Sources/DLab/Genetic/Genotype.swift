@@ -25,7 +25,7 @@ public struct Genotype: Codable, Equatable, CustomStringConvertible {
     public var right: String = ""
     
     /// Heterozygosity state, must be diploid and alleles are not empty.
-    public var heterozygote: Bool {
+    public var isHeterozygote: Bool {
         return self.ploidy == .Diploid && left != right
     }
 

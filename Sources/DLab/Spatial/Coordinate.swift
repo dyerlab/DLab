@@ -15,10 +15,10 @@ import CoreLocation
 public struct Coordinate: Codable, CustomStringConvertible {
     
     /// The coordinate in the x-axis
-    public var latitude: Double = .nan
+    public var latitude: Double = Double.nan
     
     /// The coordiante in the y-axis
-    public var longitude: Double = .nan
+    public var longitude: Double = Double.nan
     
     /// The coordinate in the z-axis
     public var elevation: Double = Double.nan
