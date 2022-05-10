@@ -102,7 +102,7 @@ extension Individual: CustomStringConvertible {
 
 
 
-extension Indivdiual {
+extension Individual {
     
     static public func Default() -> Individual {
         

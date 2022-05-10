@@ -16,7 +16,7 @@ class IndividualTests: XCTestCase {
         
         XCTAssertNil( ind.coord )
         XCTAssertEqual( ind.loci.keys.sorted(), [String]() )
-        XCTAssertEquL( ind.strata.keys.sorted(), [String]() )
+        XCTAssertEqual( ind.strata.keys.sorted(), [String]() )
         
     }
 

@@ -12,6 +12,7 @@ public class Stratum: Codable {
     public var id: UUID = UUID()
     
     public var individuals: [Individual] = []
+    public var frequencies: [String:AlleleFrequencies] = [:]
     
     public var count: Int {
         return self.individuals.count
@@ -40,7 +41,17 @@ public class Stratum: Codable {
 
 
 
-
+extension Stratum {
+    
+    public func addIndividual( ind: Individual) {
+        for locus in ind.loci.keys.sorted() {
+            if let geno = ind.loci[locus] {
+                frequencies[ locus, default: AlleleFrequencies() ].addGenotype(geno: geno )
+            }
+        }
+    }
+    
+}
 
 
 

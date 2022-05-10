@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct AlleleFrequencies {
+public struct AlleleFrequencies: Codable {
     
     private var counts = [String: Double]()
     private var N = 0.0
@@ -30,6 +30,12 @@ public struct AlleleFrequencies {
     
     public init( genotypes: [Genotype] ) {
         for geno in genotypes {
+            self.addGenotype(geno: geno)
+        }
+    }
+    
+    mutating public func addGenotypes( genos: [Genotype]) {
+        genos.forEach{ geno in
             self.addGenotype(geno: geno)
         }
     }
@@ -87,6 +93,20 @@ extension AlleleFrequencies: CustomStringConvertible {
     
 }
 
+
+
+
+
+extension AlleleFrequencies {
+    
+    public static func Default() -> AlleleFrequencies {
+        let data = Stratum.DefaultStratum()
+        let locus = data.individuals.locusKeys.first!
+        let genos = data.individuals.getGenotypes(named: locus )
+        let freqs = AlleleFrequencies(genotypes: genos )
+        return freqs
+    }
+}
 
 
 
