@@ -27,7 +27,7 @@ public class Stratum: Codable {
             }
             ret.append(contentsOf: ind.loci.keys.sorted(by: { $0.compare($1, options: .numeric) == .orderedAscending }) )
         }
-        return [String]()
+        return ret
     }
     
     public init() { }

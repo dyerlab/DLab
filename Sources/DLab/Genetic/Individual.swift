@@ -102,7 +102,28 @@ extension Individual: CustomStringConvertible {
 
 
 
+extension Indivdiual {
+    
+    static public func Default() -> Individual {
+        
+        let ind = Individual()
+        ind.coord = Coordinate(latitude: 36, longitude: -77, elevation: 42)
+        ind.strata["Population"] = "RVA"
+        ind.strata["Region"] = "Piedmont"
+        
+        let loci = ["1:1", "1:1", "1:2",
+                    "1:1", "1:1", "7:9" ]
+        let names = ["LTRS", "WNT", "EN", "EF", "ZMP", "AML"]
+        
+        for i in 0 ..< 6 {
+            ind.loci[ names[i] ] = Genotype(raw: loci[i])
+        }
 
+        return ind
+        
+    }
+    
+}
 
 
 

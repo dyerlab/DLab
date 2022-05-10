@@ -80,10 +80,29 @@ extension Array where Element == Individual {
     
     /**
      Get all the strata for a single location
+     - Parameters:
+      - named: The name of the stratum of interest.
+     - Returns: An array of values with the stratumfo reach indiviudal.
      */
     public func getStrata( named: String ) -> [String] {
         return self.compactMap{ $0.strata[named, default: ""]}
     }
+    
+    /**
+     Get the levels for a specfic stratum
+     - Parameters:
+      - stratum: The Name of the strtatum
+     - Returns: The set of unique values in the stratum
+     */
+    public func strataLevels( stratum: String) -> [String] {
+        return Set<String>( self.getStrata(named: stratum) ).unique()
+    }
+    
+    
+    
+    
+    
+    
 }
 
 
