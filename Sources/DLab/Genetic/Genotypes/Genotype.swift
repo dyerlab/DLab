@@ -45,7 +45,16 @@ public struct Genotype: Codable, Equatable, CustomStringConvertible {
         case .Haploid:
             return String("\(left)\(right)")
         default:
-            return String("\(left):\(right)")
+            if masking == .NoMasking || masking == .UNDEFINED {
+                return String("\(left):\(right)")
+            }
+            else if masking == .MotherLeft {
+                return right
+            }
+            else if masking == .MotherRight {
+                return left 
+            }
+
         }
     }
         
