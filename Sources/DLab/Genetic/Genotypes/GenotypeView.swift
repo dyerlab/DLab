@@ -18,5 +18,8 @@ struct GenotypeView: View {
 struct GenotypeView_Previews: PreviewProvider {
     static var previews: some View {
         GenotypeView( genotype: .constant(Genotype()) )
+        GenotypeView( genotype: .constant( Genotype(raw:"A")))
+        GenotypeView( genotype: .constant( Genotype(alleles: ("A","B"))))
+        GenotypeView( genotype: .constant( Genotype(alleles: ("B","A"))))
     }
 }

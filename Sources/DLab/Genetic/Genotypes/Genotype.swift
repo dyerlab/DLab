@@ -54,6 +54,9 @@ public struct Genotype: Codable, Equatable, CustomStringConvertible {
             else if masking == .MotherRight {
                 return left 
             }
+            else {
+                return "XXX"
+            }
 
         }
     }
