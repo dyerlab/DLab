@@ -20,8 +20,11 @@ public enum AlleleMasking: Int, Codable {
     /// Mother is right allele
     case MotherRight
     
-    /// Cannot determine masking
-    case UNDEFINED
+    /// Cannot determine masking due to shared heterozygote
+    case Undefined
+    
+    /// Missing data
+    case MissingData
 }
 
 

@@ -26,32 +26,14 @@ class Family: Stratum {
     public func addOffspring( offspring: Individual ) {
         if let mom = self.mother {
             for locus in offspring.loci.keys {
-                offspring.loci[ locus ]?.masking = getMask( offspring: offspring.loci[locus, default: Genotype()],
-                                                            parent: mom.loci[locus, default: Genotype() ])
+                if var oGeno = offspring.loci[locus],
+                   let mGeno = mom.loci[locus] {
+                    oGeno.setMasking(parent: mGeno)
+                    offspring.loci[locus] = oGeno
+                }
             }
             self.addIndividual(ind: offspring)
         }
-    }
-    
-    
-    
-    
-    private func getMask(offspring: Genotype, parent: Genotype ) -> AlleleMasking {
-        
-        if offspring.isEmpty || parent.isEmpty { return .NoMasking }
-        
-        if offspring == parent && offspring.isHeterozygote { return .UNDEFINED }
-        
-        if parent.left == offspring.right || parent.right == offspring.right {
-            return .MotherRight
-        }
-        else if parent.left == offspring.left || parent.right == offspring.left {
-            return .MotherLeft
-        }
-        else {
-            return .UNDEFINED
-        }
-        
     }
     
     

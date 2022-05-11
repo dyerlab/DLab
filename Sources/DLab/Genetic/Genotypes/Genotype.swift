@@ -45,7 +45,7 @@ public struct Genotype: Codable, Equatable, CustomStringConvertible {
         case .Haploid:
             return String("\(left)\(right)")
         default:
-            if masking == .NoMasking || masking == .UNDEFINED {
+            if masking == .NoMasking || masking == .Undefined {
                 return String("\(left):\(right)")
             }
             else if masking == .MotherLeft {
@@ -116,6 +116,33 @@ public struct Genotype: Codable, Equatable, CustomStringConvertible {
             left = ""
             right = ""
         }
+        
+        // Reset any masking when we reset the allels
+        self.masking = .NoMasking
+    }
+    
+    public mutating func setMasking( parent: Genotype ) {
+        if self.isEmpty || parent.isEmpty {
+            self.masking = .MissingData
+        }
+        else if self == parent {
+            if isHeterozygote {
+                masking = .Undefined
+            }
+            else {
+                masking = .MotherLeft
+            }
+        }
+        else if parent.left == right || parent.right == right {
+            masking = .MotherRight
+        }
+        else if parent.left == left || parent.right == left {
+            masking = .MotherLeft
+        }
+        else {
+            masking = .Undefined
+        }
+        
     }
  
     
@@ -135,6 +162,9 @@ public struct Genotype: Codable, Equatable, CustomStringConvertible {
         }
         return ret
     }
+    
+    
+   
 }
 
 
@@ -167,3 +197,44 @@ extension Genotype {
 }
 
 
+
+
+
+extension Genotype {
+    
+    static func DefaultNULL() -> Genotype {
+        return Genotype()
+    }
+    
+    static func DefaultHaploid() -> Genotype {
+        return Genotype(raw: "A")
+    }
+    
+    static func DefaultHeterozygote() -> Genotype {
+        return Genotype(alleles: ("A","B") )
+    }
+    
+    static func DefaultHomozygote() -> Genotype {
+        return Genotype(alleles: ("A","A") )
+    }
+    
+    static func DefaultHeterozygoteMomLeft() -> Genotype {
+        var geno = Genotype(raw: "A:B")
+        geno.masking = .MotherLeft
+        return geno
+    }
+
+    static func DefaultHeterozygoteMomRight() -> Genotype {
+        var geno = Genotype(raw: "A:B")
+        geno.masking = .MotherRight
+        return geno
+    }
+
+    static func DefaultHeterozygoteUndefined() -> Genotype {
+        var geno = Genotype(raw: "A:B")
+        geno.masking = .Undefined
+        return geno
+    }
+
+    
+}

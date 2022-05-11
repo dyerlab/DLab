@@ -52,6 +52,8 @@ class GenotypeTests: XCTestCase {
         XCTAssertEqual( geno.asVector(alleles: ["A","B","C"]), [2.0,0.0,0.0])
     }
     
+    
+    
     func testAMOVADistances() throws {
         let AA = Genotype(raw: "A:A")
         let AB = Genotype(raw: "A:B")
