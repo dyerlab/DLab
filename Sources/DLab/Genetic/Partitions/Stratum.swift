@@ -53,7 +53,16 @@ extension Stratum {
 
 
 
-
+extension Stratum: CustomStringConvertible {
+    
+    public var description: String {
+        var ret = "Data:\n"
+        for ind in self.individuals {
+            ret += String("\(ind)\n")
+        }
+        return ret
+    }
+}
 
 
 
@@ -78,7 +87,31 @@ extension Stratum {
             [ "NBP", "88", "29.32544338", "-114.2934972", "1:1", "1:1", "1:2", "1:1", "1:1", "7:9", "9:9", "5:7" ],
             [ "NBP", "88", "29.32541581", "-114.2935022", "1:1", "1:1", "1:2", "1:1", "1:1", "7:7", "9:9", "5:7" ],
             [ "NBP", "88", "29.32547339", "-114.2934413", "1:1", "1:3", "1:2", "1:1", "1:1", "9:10", "9:9", "7:7" ],
-            [ "NBP", "88", "29.32550168", "-114.2934627", "1:1", "1:1", "1:1", "1:1", "1:2", "7:8", "9:9", "7:7" ],
+            [ "NBP", "88", "29.32550168", "-114.2934627", "1:1", "1:1", "1:1", "1:1", "1:2", "7:8", "9:9", "7:7" ]
+        ]
+        
+        let header = ["Region", "Pop", "Latitude", "Longitude", "LTRS", "WNT", "EN", "EF", "ZMP", "AML", "ATPS", "MP20" ]
+        let arapat = Stratum()
+        
+        for i in 0 ..< raw.count {
+            let ind  = Individual()
+            ind.strata[ "Region" ] = raw[i][0]
+            ind.strata[ "Population" ] = raw[i][1]
+            if let lat = Double( raw[i][2]),
+               let lon = Double( raw[i][3]) {
+                ind.coord = Coordinate(latitude: lat, longitude: lon, elevation: .nan)
+            }
+            for j in 4 ..< 12 {
+                ind.loci[ header[j] ] = Genotype(raw: raw[i][j] )
+            }
+            arapat.individuals.append( ind )
+        }
+        
+        return arapat
+        
+        
+        
+        /*,
             [ "NBP", "9", "29.01466667", "-113.9448528", "1:1", "1:1", "1:2", "1:1", "1:1", "6:9", "9:9", "7:7" ],
             [ "NBP", "9", "29.01465294", "-113.9448063", "1:1", "1:1", "1:2", "1:1", "1:1", "9:9", "9:9", "7:7" ],
             [ "NBP", "9", "29.01466982", "-113.944835", "1:1", "1:1", "1:2", "1:1", "1:1", "9:9", "9:9", "7:7" ],
@@ -436,24 +469,7 @@ extension Stratum {
             [ "SON", "102", "26.38020234", "-109.1262803", "2:2", "1:1", "3:3", "1:2", "", "", "2:2", "3:13"]
         ]
         
-        let header = ["Region", "Pop", "Latitude", "Longitude", "LTRS", "WNT", "EN", "EF", "ZMP", "AML", "ATPS", "MP20" ]
-        let arapat = Stratum()
-        
-        for i in 0 ..< raw.count {
-            let ind  = Individual()
-            ind.strata[ "Region" ] = raw[i][0]
-            ind.strata[ "Population" ] = raw[i][1]
-            if let lat = Double( raw[i][2]),
-               let lon = Double( raw[i][3]) {
-                ind.coord = Coordinate(latitude: lat, longitude: lon, elevation: .nan)
-            }
-            for j in 4 ..< 12 {
-                ind.loci[ header[j] ] = Genotype(raw: raw[i][j] )
-            }
-            arapat.individuals.append( ind )
-        }
-        
-        return arapat
+       */
     }
     
 }

@@ -10,7 +10,7 @@ import XCTest
 
 class FamilyTests: XCTestCase {
 
-    func testExample() throws {
+    func testInit() throws {
         
         let mom = Individual()
         mom.loci["Loc1"] = Genotype(raw: "A:A")
@@ -25,6 +25,18 @@ class FamilyTests: XCTestCase {
         
         family.addOffspring(offspring: off1 )
         XCTAssertEqual( off1.loci["Loc1", default: Genotype()].masking, .MotherLeft )
+        
+    }
+    
+    
+    
+    func testDefault() throws {
+        
+        let data = Family.DefaultFamily()
+        
+        print("\(data)")
+        XCTAssertEqual( data.count, 15 )
+        
         
     }
 
