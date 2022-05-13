@@ -1,9 +1,31 @@
 //
-//  File.swift
+//  dyerlab.org                                          @dyerlab
+//                      _                 _       _
+//                   __| |_   _  ___ _ __| | __ _| |__
+//                  / _` | | | |/ _ \ '__| |/ _` | '_ \
+//                 | (_| | |_| |  __/ |  | | (_| | |_) |
+//                  \__,_|\__, |\___|_|  |_|\__,_|_.__/
+//                        |_ _/
+//
+//         Making Population Genetic Software That Doesn't Suck
+// 
+//  DataStore.swift
 //
 //
 //  Created by Rodney Dyer on 5/13/22.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
 
@@ -12,11 +34,41 @@ public class DataStore {
     private var strata = [String: Stratum]()
 
     public var count: Int {
-        return strata.count
+        return strata.keys.count
+    }
+    
+    public var strataKeys: [String] {
+        var ret = [String]()
+        for key in strata.keys {
+            ret.append( contentsOf: strata[key]!.individuals.strataKeys )
+        }
+        return Set(ret).unique().sorted { $0.localizedStandardCompare($1) == .orderedAscending }
+    }
+    
+    public var locusKeys: [String] {
+        var ret = [String]()
+        for key in strata.keys {
+            ret.append( contentsOf: strata[key]!.individuals.locusKeys )
+        }
+        return Set(ret).unique().sorted { $0.localizedStandardCompare($1) == .orderedAscending }
+    }
+    
+    public var numInds: Int {
+        return strata.values.compactMap { $0.count }.reduce( 0, +)
     }
 
     public init() {}
 
+    public func strataLevels(name: String ) -> [String] {
+        var ret = [String]()
+        
+        for stratum in self.strata.values {
+            ret.append(contentsOf: stratum.individuals.compactMap { $0.strata[name] } )
+        }
+        
+        return Set(ret).unique().sorted { $0.localizedStandardCompare($1) == .orderedAscending }
+    }
+    
     public func stratumAtLevel(name: String, level: String) -> Stratum {
         if strata.keys.contains(name) {
             return strata[name, default: Stratum()]
@@ -32,6 +84,18 @@ public class DataStore {
         }
         return ret
     }
+    
+    
+    public func allStrataForLevel( level: String ) -> [String:Stratum ] {
+        var ret = [String:Stratum]()
+        
+        for name in strataLevels(name: level) {
+            ret[name] = stratumAtLevel(name: name, level: level )
+        }
+        
+        return ret
+    }
+    
 }
 
 extension DataStore {
@@ -57,8 +121,12 @@ extension DataStore {
             ind.loci["AML"] = Genotype(raw: row[9])
             ind.loci["ATPS"] = Genotype(raw: row[10])
             ind.loci["MP20"] = Genotype(raw: row[11])
+            
+            if !store.strata.keys.contains( row[1] ) {
+                store.strata[ row[1] ] = Stratum()
+            }
 
-            store.strata[row[1], default: Stratum()].addIndividual(ind: ind)
+            store.strata[row[1]]!.addIndividual(ind: ind)
         }
         return store
     }
@@ -429,7 +497,7 @@ extension DataStore {
             ["SON", "102", "26.38019723", "-109.1262358", "1:2", "", "3:3", "1:2", "", "11:11", "2:2", "11:13"],
             ["SON", "102", "26.38021682", "-109.1262463", "2:2", "1:1", "1:1", "1:1", "", "", "2:2", "12:12"],
             ["SON", "102", "26.38023371", "-109.1262476", "1:2", "1:1", "3:3", "1:2", "", "", "2:2", "12:12"],
-            ["SON", "102", "26.38020234", "-109.1262803", "2:2", "1:1", "3:3", "1:2", "", "", "2:2", "3:13"],
+            ["SON", "102", "26.38020234", "-109.1262803", "2:2", "1:1", "3:3", "1:2", "", "", "2:2", "3:13"]
         ]
     }
 }

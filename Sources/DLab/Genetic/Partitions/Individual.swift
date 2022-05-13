@@ -15,6 +15,18 @@
 //  Created by Rodney Dyer on 10/27/21.
 //  Copyright (c) 2021 Rodney J Dyer.  All Rights Reserved.
 //
+//  This program is free software: you can redistribute it and/or modify
+//  it under the terms of the GNU General Public License as published by
+//  the Free Software Foundation, either version 3 of the License, or
+//  (at your option) any later version.
+//
+//  This program is distributed in the hope that it will be useful,
+//  but WITHOUT ANY WARRANTY; without even the implied warranty of
+//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+//  GNU General Public License for more details.
+//
+//  You should have received a copy of the GNU General Public License
+//  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
 
@@ -63,6 +75,7 @@ extension Individual: CustomStringConvertible {
         for key in strata.keys.sorted(by: { $0.compare($1, options: .numeric) == .orderedAscending }) {
             ret.append(strata[key]!)
         }
+
         if let coord = coord {
             ret.append(String("\(coord)"))
         }
@@ -84,7 +97,8 @@ public extension Individual {
 
         let loci = ["1:1", "1:1", "1:2",
                     "1:1", "1:1", "7:9"]
-        let names = ["LTRS", "WNT", "EN", "EF", "ZMP", "AML"]
+        let names = ["LTRS", "WNT", "EN",
+                     "EF", "ZMP", "AML"]
 
         for i in 0 ..< 6 {
             ind.loci[names[i]] = Genotype(raw: loci[i])
