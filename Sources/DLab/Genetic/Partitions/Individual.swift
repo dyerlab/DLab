@@ -78,17 +78,13 @@ extension Individual: CustomStringConvertible {
     /// Overload of description for plotting
     public var description: String {
     
-        var ret = [String("\(id.description)")]
+        var ret = [String]()
         
         for key in strata.keys.sorted(by: { $0.compare($1, options: .numeric) == .orderedAscending }) {
             ret.append( strata[key]! )
         }
         if let coord = self.coord {
-            ret.append( String("\(coord.longitude)"))
-            ret.append( String("\(coord.latitude)"))
-            if coord.hasElevation {
-                ret.append( String("\(coord.elevation)"))
-            }
+            ret.append( String("\(coord)"))
         }
         
         for key in loci.keys.sorted(by: { $0.compare($1, options: .numeric) == .orderedAscending }) {

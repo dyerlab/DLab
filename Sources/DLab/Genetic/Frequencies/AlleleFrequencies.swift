@@ -43,14 +43,16 @@ public struct AlleleFrequencies: Codable {
     mutating public func addGenotype( geno: Genotype ) {
 
         if geno.ploidy == .Diploid {
+            print("diploid")
             numDiploid  += 1.0
             if geno.isHeterozygote {
+                print("het")
                 numHets += 1.0
             }
         }
         
         if geno.masking == .NoMasking {
-
+            print("no masking")
             if !geno.left.isEmpty {
                 N += 1.0
                 counts[ geno.left, default: 0.0 ] += 1.0
@@ -102,8 +104,9 @@ extension AlleleFrequencies: CustomStringConvertible {
     public var description: String {
         var ret = "Frequencies:\n"
         for allele in self.alleles {
-            ret += String(" \(allele): \(frequency(allele: allele))")
+            ret += String(" \(allele): \(frequency(allele: allele))\n")
         }
+        ret += String("\(self.counts)\n")
         return ret
     }
     

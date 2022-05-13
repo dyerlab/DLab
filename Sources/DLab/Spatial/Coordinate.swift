@@ -30,15 +30,15 @@ public struct Coordinate: Codable, CustomStringConvertible {
     
     /// Flag to show that this has elevation
     public var hasElevation: Bool {
-        return elevation.isNaN
+        return !self.elevation.isNaN
     }
     
     /// Overload of string convertible
     public var description: String {
         if hasElevation {
-            return String("(\(longitude), \(latitude), \(elevation)")
+            return String("\(longitude), \(latitude), \(elevation)")
         } else {
-            return String("(\(longitude), \(latitude))")
+            return String("\(longitude), \(latitude)")
         }
     }
     
