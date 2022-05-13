@@ -42,7 +42,7 @@ public struct AlleleFrequencies: Codable {
     
     mutating public func addGenotype( geno: Genotype ) {
         
-        if geno.ploidy == .Diploid && geno.masking == .NoMasking {
+        if geno.ploidy == .Diploid && (geno.masking == .NoMasking || geno.masking == .Undefined) {
             numDiploid  += 1.0
             if geno.isHeterozygote {
                 numHets += 1.0

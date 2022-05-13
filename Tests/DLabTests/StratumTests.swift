@@ -71,7 +71,12 @@ class StratumTests: XCTestCase {
             XCTAssertEqual( freq.numDiploid, 0.0 )
         }
         
+        if let freq = data.frequencies["cf125"] {
+            print("\(freq)")
+            XCTAssertEqual( freq.alleles, ["153","155","157"] )
+            XCTAssertEqual( freq.frequencies(alleles: ["153","155","157"]), [9.0/23.0, 5.0/23.0, 9.0/23.0])
+            XCTAssertEqual( freq.numHets, 8.0)
+            XCTAssertEqual( freq.numDiploid, 8.0)
+        }
     }
-    
-    
 }
