@@ -8,7 +8,7 @@
 //                        |_ _/
 //
 //         Making Population Genetic Software That Doesn't Suck
-// 
+//
 //
 //  Created by Rodney Dyer on 6/10/21.
 //  Copyright (c) 2021 The Dyer Laboratory.  All Rights Reserved.
@@ -26,17 +26,16 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-import Foundation
 import Accelerate
-
+import Foundation
 
 /// Matrix element-wise addition
 /// - Parameters:
 ///  - lhs: The left matrix
 ///  - rhs: The right matrix
 /// - Returns: A matrix resulting from element-wise addition.
-public func +(lhs: Matrix, rhs: Matrix) -> Matrix {
-    return Matrix( lhs.rows, lhs.cols, lhs.values + rhs.values )
+public func + (lhs: Matrix, rhs: Matrix) -> Matrix {
+    return Matrix(lhs.rows, lhs.cols, lhs.values + rhs.values)
 }
 
 /// Matrix element-wise subtraction
@@ -44,30 +43,27 @@ public func +(lhs: Matrix, rhs: Matrix) -> Matrix {
 ///  - lhs: The left matrix
 ///  - rhs: The right matrix
 /// - Returns: A matrix resulting from element-wise subtraction.
-public func -(lhs: Matrix, rhs: Matrix) -> Matrix {
-    return Matrix( lhs.rows, lhs.cols, lhs.values - rhs.values )
+public func - (lhs: Matrix, rhs: Matrix) -> Matrix {
+    return Matrix(lhs.rows, lhs.cols, lhs.values - rhs.values)
 }
-
 
 /// Matrix element-wise multiplication
 /// - Parameters:
 ///  - lhs: The left matrix
 ///  - rhs: The right matrix
 /// - Returns: A matrix resulting from element-wise multiplication.
-public func *(lhs: Matrix, rhs: Matrix) -> Matrix {
-    return Matrix( lhs.rows, lhs.cols, lhs.values * rhs.values )
+public func * (lhs: Matrix, rhs: Matrix) -> Matrix {
+    return Matrix(lhs.rows, lhs.cols, lhs.values * rhs.values)
 }
-
 
 /// Matrix element-wise divsion
 /// - Parameters:
 ///  - lhs: The left matrix
 ///  - rhs: The right matrix
 /// - Returns: A matrix resulting from element-wise division.
-public func /(lhs: Matrix, rhs: Matrix) -> Matrix {
-    return Matrix( lhs.rows, lhs.cols, lhs.values / rhs.values )
+public func / (lhs: Matrix, rhs: Matrix) -> Matrix {
+    return Matrix(lhs.rows, lhs.cols, lhs.values / rhs.values)
 }
-
 
 /// Matrix multiplication
 ///
@@ -77,13 +73,13 @@ public func /(lhs: Matrix, rhs: Matrix) -> Matrix {
 ///  - lhs: The left matrix
 ///  - rhs: The right matrix
 /// - Returns: A matrix resulting from matrix multiplication
-public func .*(lhs: Matrix, rhs: Matrix ) -> Matrix {
-    let ret = Matrix(lhs.rows, rhs.cols )
-    vDSP_mmulD( lhs.values, 1,
-                rhs.values, 1,
-                &ret.values, 1,
-                vDSP_Length(lhs.rows),
-                vDSP_Length(rhs.cols),
-                vDSP_Length(lhs.cols))
+public func .* (lhs: Matrix, rhs: Matrix) -> Matrix {
+    let ret = Matrix(lhs.rows, rhs.cols)
+    vDSP_mmulD(lhs.values, 1,
+               rhs.values, 1,
+               &ret.values, 1,
+               vDSP_Length(lhs.rows),
+               vDSP_Length(rhs.cols),
+               vDSP_Length(lhs.cols))
     return ret
 }

@@ -8,8 +8,8 @@
 //                        |_ _/
 //
 //         Making Population Genetic Software That Doesn't Suck
-// 
-//  
+//
+//
 //  Created by Rodney Dyer on 6/10/21.
 //  Copyright (c) 2021 The Dyer Laboratory.  All Rights Reserved.
 //
@@ -26,12 +26,7 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
 import Accelerate
 
-
 /// Defines new operator for Matrix Multiplication.
-infix operator .* : MultiplicationPrecedence
-
-
-
+infix operator .*: MultiplicationPrecedence

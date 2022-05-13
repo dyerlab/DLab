@@ -9,7 +9,7 @@
 //                        |_ _/
 //
 //         Making Population Genetic Software That Doesn't Suck
-// 
+//
 //
 //  Created by Rodney Dyer on 11/23/20.
 //  Copyright (c) 2021 The Dyer Laboratory.  All Rights Reserved.
@@ -29,11 +29,8 @@
 
 import Foundation
 
-
 /// This is a simple protocol that other objects can adopt to be able to generate matrix repsresenations.
 public protocol MatrixConvertible {
-    
     // All Objects conforming to this protocol must implement this function
     func asMatrix() -> Matrix
-    
 }

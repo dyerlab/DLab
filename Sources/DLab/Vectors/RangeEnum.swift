@@ -8,7 +8,7 @@
 //                        |_ _/
 //
 //         Making Population Genetic Software That Doesn't Suck
-// 
+//
 //  DLabMatrix
 //  RangeEnum.swift
 //
@@ -28,16 +28,13 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
 import Foundation
 
 public enum RangeEnum: Int, CaseIterable, Comparable {
-    
     case uniform_0_1 = 1
     case uniform_neg1_1 = 2
     case normal_0_1 = 3
-    
-    
+
     public static func < (lhs: RangeEnum, rhs: RangeEnum) -> Bool {
         lhs.rawValue < rhs.rawValue
     }

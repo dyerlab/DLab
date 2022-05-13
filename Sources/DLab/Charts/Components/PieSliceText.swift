@@ -10,7 +10,7 @@ import SwiftUI
 struct PieSliceText: View {
     let title: String
     let description: String
-    
+
     var body: some View {
         VStack {
             Text(title)

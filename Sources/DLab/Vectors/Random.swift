@@ -7,7 +7,7 @@
 //
 //         Making Population Genetic Software That Doesn't Suck
 //
-//  
+//
 //  Random.swift
 //  DLabMatrix
 //
@@ -27,12 +27,10 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
 import Foundation
 
 /// Public struct to make random stuff for various types of numbers from a range
-public struct Random {
-    
+public enum Random {
     /// Returns a random variable of type T from the passed ragne
     ///  - Parameters:
     ///   - Range: the closed range to grab a random number from
@@ -40,5 +38,4 @@ public struct Random {
     public static func within<T>(_ range: ClosedRange<T>) -> T where T: FloatingPoint, T: ExpressibleByFloatLiteral {
         return (range.upperBound - range.lowerBound) * (T(arc4random()) / T(UInt32.max)) + range.lowerBound
     }
-    
 }

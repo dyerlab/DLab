@@ -25,15 +25,13 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
 import Accelerate
 
 /// Define a typealias for a function operator that takes arguments that work in lapac functions for vector/vector operations
-typealias OperatorVectorVector = ((_: UnsafePointer<Double>, _: vDSP_Stride,
-                                   _: UnsafePointer<Double>, _: vDSP_Stride,
-                                   _: UnsafeMutablePointer<Double>, _: vDSP_Stride,
-                                   _: vDSP_Length) -> ())
-
+typealias OperatorVectorVector = (_: UnsafePointer<Double>, _: vDSP_Stride,
+                                  _: UnsafePointer<Double>, _: vDSP_Stride,
+                                  _: UnsafeMutablePointer<Double>, _: vDSP_Stride,
+                                  _: vDSP_Length) -> Void
 
 /// Generic function for performing Vector/Vector Operations
 ///
@@ -43,7 +41,7 @@ typealias OperatorVectorVector = ((_: UnsafePointer<Double>, _: vDSP_Stride,
 ///   - x: The left `Vector`
 ///   - y: The right `Vector`
 /// - Returns: The result of the `operaiton` function on the two vectors.
-func vectorVectorOperation(_ operation: OperatorVectorVector, _ x: Vector, _ y: Vector ) -> Vector {
+func vectorVectorOperation(_ operation: OperatorVectorVector, _ x: Vector, _ y: Vector) -> Vector {
     var z = Vector(repeating: 0.0, count: x.count)
     operation(x, 1, y, 1, &z, 1, vDSP_Length(x.count))
     return z
@@ -54,20 +52,19 @@ func vectorVectorOperation(_ operation: OperatorVectorVector, _ x: Vector, _ y: 
 ///   - lhs: The left vector
 ///   - rhs: The right vector
 /// - Returns: A boolean indicating the elementwise equality of the values in each.
-public func ==(lhs: Vector, rhs: Vector ) -> Bool {
-    return ( lhs.count == rhs.count ) && ( zip(lhs,rhs).filter { (l,r) in
-        fabs( l.distance(to: r)) <= Double.leastNormalMagnitude
-    }.count != 0 )
+public func == (lhs: Vector, rhs: Vector) -> Bool {
+    return (lhs.count == rhs.count) && (zip(lhs, rhs).filter { l, r in
+        fabs(l.distance(to: r)) <= Double.leastNormalMagnitude
+    }.count != 0)
 }
-
 
 /// Elementwise Addition Operator
 /// - Parameters:
 ///   - lhs: The left vector
 ///   - rhs: The right vector
 /// - Returns: The `Vector` resulting from the addition of both vectors.
-public func +(lhs: Vector, rhs: Vector ) -> Vector {
-    return vectorVectorOperation( vDSP_vaddD, lhs, rhs )
+public func + (lhs: Vector, rhs: Vector) -> Vector {
+    return vectorVectorOperation(vDSP_vaddD, lhs, rhs)
 }
 
 /// Elementwise Subtraction Operator
@@ -75,8 +72,8 @@ public func +(lhs: Vector, rhs: Vector ) -> Vector {
 ///   - lhs: The left vector
 ///   - rhs: The right vector
 /// - Returns: The `Vector` resulting from the subtraction of both vectors.
-public func -(lhs: Vector, rhs: Vector ) -> Vector {
-    return vectorVectorOperation( vDSP_vsubD, rhs, lhs )
+public func - (lhs: Vector, rhs: Vector) -> Vector {
+    return vectorVectorOperation(vDSP_vsubD, rhs, lhs)
 }
 
 /// Elementwise Multiplication Operator
@@ -84,8 +81,8 @@ public func -(lhs: Vector, rhs: Vector ) -> Vector {
 ///   - lhs: The left vector
 ///   - rhs: The right vector
 /// - Returns: The `Vector` resulting from the multiplication of both vectors.
-public func *(lhs: Vector, rhs: Vector ) -> Vector {
-    return vectorVectorOperation( vDSP_vmulD, lhs, rhs )
+public func * (lhs: Vector, rhs: Vector) -> Vector {
+    return vectorVectorOperation(vDSP_vmulD, lhs, rhs)
 }
 
 /// Elementwise Division Operator
@@ -93,12 +90,9 @@ public func *(lhs: Vector, rhs: Vector ) -> Vector {
 ///   - lhs: The left vector
 ///   - rhs: The right vector
 /// - Returns: The `Vector` resulting from the division of both vectors.
-public func /(lhs: Vector, rhs: Vector ) -> Vector {
-    return vectorVectorOperation( vDSP_vdivD, rhs, lhs )
+public func / (lhs: Vector, rhs: Vector) -> Vector {
+    return vectorVectorOperation(vDSP_vdivD, rhs, lhs)
 }
-
-
-
 
 /// The Dot Product of two vectors.
 ///
@@ -107,9 +101,9 @@ public func /(lhs: Vector, rhs: Vector ) -> Vector {
 ///   - lhs: The left vector
 ///   - rhs: The right vector
 /// - Returns: The sum of the element-wise multiplciation of the two vectors.
-public func .*(lhs: Vector, rhs: Vector) -> Double {
-    var ret: Double = 0.0
-    vDSP_dotprD( lhs, 1, rhs, 1, &ret, vDSP_Length(lhs.count) )
+public func .* (lhs: Vector, rhs: Vector) -> Double {
+    var ret = 0.0
+    vDSP_dotprD(lhs, 1, rhs, 1, &ret, vDSP_Length(lhs.count))
     return ret
 }
 
@@ -118,16 +112,6 @@ public func .*(lhs: Vector, rhs: Vector) -> Double {
 ///   - vec1: The first vector
 ///   - vec2: The second vector
 /// - Returns: The distance between them
-public func distance(_ vec1: Vector, _ vec2: Vector ) -> Double {
-    return sqrt( (vec1 - vec2).map { $0 * $0 }.sum )
+public func distance(_ vec1: Vector, _ vec2: Vector) -> Double {
+    return sqrt((vec1 - vec2).map { $0 * $0 }.sum)
 }
-
-/// Estimates distance between two vectors
-/// - Parameters:
-///   - vec1: The first vector
-///   - vec2: The second vector
-/// - Returns: The distance between them
-public func amovaDistance(_ vec1: Vector, _ vec2: Vector ) -> Double {
-    return ((vec1 - vec2).map { $0 * $0 }).sum / 2.0 
-}
-

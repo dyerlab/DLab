@@ -16,81 +16,71 @@
 //  Copyright (c) 2021 Rodney J Dyer.  All Rights Reserved.
 //
 
-import MapKit
-import Foundation
 import CoreLocation
+import Foundation
+import MapKit
 
 /**
  Extensions for arrays of coordinates
  */
 extension Array where Element == CLLocationCoordinate2D {
-    
     var centroid: CLLocationCoordinate2D {
-        var maxLatitude: Double = -200;
-        var maxLongitude: Double = -200;
-        var minLatitude: Double = Double(MAXFLOAT);
-        var minLongitude: Double = Double(MAXFLOAT);
-        
+        var maxLatitude: Double = -200
+        var maxLongitude: Double = -200
+        var minLatitude = Double(MAXFLOAT)
+        var minLongitude = Double(MAXFLOAT)
+
         for location in self {
             if location.latitude < minLatitude {
-                minLatitude = location.latitude;
+                minLatitude = location.latitude
             }
-            
+
             if location.longitude < minLongitude {
-                minLongitude = location.longitude;
+                minLongitude = location.longitude
             }
-            
+
             if location.latitude > maxLatitude {
-                maxLatitude = location.latitude;
+                maxLatitude = location.latitude
             }
-            
+
             if location.longitude > maxLongitude {
-                maxLongitude = location.longitude;
+                maxLongitude = location.longitude
             }
         }
-        
-        return CLLocationCoordinate2DMake( CLLocationDegrees((maxLatitude + minLatitude) * 0.5),
-                                           CLLocationDegrees((maxLongitude + minLongitude) * 0.5));
+
+        return CLLocationCoordinate2DMake(CLLocationDegrees((maxLatitude + minLatitude) * 0.5),
+                                          CLLocationDegrees((maxLongitude + minLongitude) * 0.5))
     }
-    
+
     var span: MKCoordinateSpan {
-        var maxLatitude: Double = -200;
-        var maxLongitude: Double = -200;
-        var minLatitude: Double = Double(MAXFLOAT);
-        var minLongitude: Double = Double(MAXFLOAT);
-        
+        var maxLatitude: Double = -200
+        var maxLongitude: Double = -200
+        var minLatitude = Double(MAXFLOAT)
+        var minLongitude = Double(MAXFLOAT)
+
         for location in self {
             if location.latitude < minLatitude {
-                minLatitude = location.latitude;
+                minLatitude = location.latitude
             }
-            
+
             if location.longitude < minLongitude {
-                minLongitude = location.longitude;
+                minLongitude = location.longitude
             }
-            
+
             if location.latitude > maxLatitude {
-                maxLatitude = location.latitude;
+                maxLatitude = location.latitude
             }
-            
+
             if location.longitude > maxLongitude {
-                maxLongitude = location.longitude;
+                maxLongitude = location.longitude
             }
         }
-        
-        return MKCoordinateSpan( latitudeDelta: (maxLatitude - minLatitude),
-                                 longitudeDelta: (maxLongitude - minLongitude) )
+
+        return MKCoordinateSpan(latitudeDelta: maxLatitude - minLatitude,
+                                longitudeDelta: maxLongitude - minLongitude)
     }
-    
-    
+
     var region: MKCoordinateRegion {
-        return MKCoordinateRegion(center: self.centroid, span: self.span )
+        return MKCoordinateRegion(center: centroid, span: span)
     }
-    
-    
-    
-    
 }
-
-
-
-

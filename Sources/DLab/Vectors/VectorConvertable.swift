@@ -7,7 +7,7 @@
 //
 //         Making Population Genetic Software That Doesn't Suck
 //
-//  
+//
 //  VectorConvertible.swift
 //  DyerLabKit
 //
@@ -27,13 +27,10 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-
 import Foundation
 
 /// This is a simple protocol that other objects can adopt to be able to generate matrix repsresenations.
 public protocol VectorConvertible {
-    
     // Any object that adopts this protocol must overload this method
     func asVector() -> Vector
-    
 }

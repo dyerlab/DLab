@@ -16,95 +16,90 @@
 //  Copyright (c) 2021 Rodney J Dyer.  All Rights Reserved.
 //
 
-import Foundation
 import CoreLocation
+import Foundation
 import MapKit
-
 
 /**
  Extensions for arrays  of individuals
  */
 
-extension Array where Element == Individual {
-
+public extension Array where Element == Individual {
     /**
      Names of the loci
      - Returns: An array of locus names.
      */
-    public var locusKeys: [String] {
-        return self.first?.loci.keys.sorted(by: { $0.compare($1, options: .numeric) == .orderedAscending }) ?? [String]()
+    var locusKeys: [String] {
+        return first?.loci.keys.sorted(by: { $0.compare($1, options: .numeric) == .orderedAscending }) ?? [String]()
     }
-    
+
     /**
      Strata Keys
      - Returns: An array of strata in alphabetical order
      */
-    public var strataKeys: [String] {
-        return self.first?.loci.keys.sorted(by: { $0.compare($1, options: .numeric) == .orderedAscending }) ?? [String]()
+    var strataKeys: [String] {
+        return first?.loci.keys.sorted(by: { $0.compare($1, options: .numeric) == .orderedAscending }) ?? [String]()
     }
-    
-    /**
-     Spatial Keys
-     - Returns: An array of spatial keys
-     */
-    public var coordinateKeys: [String] {
-        return self.first?.coord?.keys ?? [String]()
-    }
-    
+
     /**
      All keys for individual including loci and coordinates.
      - Returns: Array of keys.
      */
-    public var allKeys: [String] {
+    var allKeys: [String] {
         var ret = [String]()
-        ret.append(contentsOf: self.strataKeys )
-        ret.append(contentsOf: self.coordinateKeys )
-        ret.append(contentsOf: self.locusKeys )
+        ret.append(contentsOf: strataKeys)
+        ret.append("Longitude")
+        ret.append("Latitude")
+        ret.append(contentsOf: locusKeys)
         return ret
     }
-    
+
     /**
      All locations
      - Returns: Array of `CLLocationCoordinate2D` objects from all individuals
      */
-    public var spatialLocations: [CLLocationCoordinate2D] {
-        return self.compactMap{ CLLocationCoordinate2D(coordinate: $0.coord ?? Coordinate() ) }
+    var spatialLocations: [CLLocationCoordinate2D] {
+        let coords = compactMap { $0.coord }
+        return coords.compactMap { CLLocationCoordinate2D(coordinate: $0) }
     }
-        
+
     /**
      Get all the genotypes for a single locus
      */
-    public func getGenotypes( named: String ) -> [Genotype] {
-        return self.compactMap{ $0.loci[named, default: Genotype() ] }
+    func getGenotypes(named: String) -> [Genotype] {
+        return compactMap { $0.loci[named, default: Genotype()] }
     }
-    
+
     /**
      Get all the strata for a single location
      - Parameters:
       - named: The name of the stratum of interest.
      - Returns: An array of values with the stratumfo reach indiviudal.
      */
-    public func getStrata( named: String ) -> [String] {
-        return self.compactMap{ $0.strata[named, default: ""]}
+    func getStrata(named: String) -> [String] {
+        return compactMap { $0.strata[named, default: ""] }
     }
-    
+
     /**
      Get the levels for a specfic stratum
      - Parameters:
       - stratum: The Name of the strtatum
      - Returns: The set of unique values in the stratum
      */
-    public func strataLevels( stratum: String) -> [String] {
-        return Set<String>( self.getStrata(named: stratum) ).unique()
+    func strataLevels(stratum: String) -> [String] {
+        return Set<String>(getStrata(named: stratum)).unique()
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
+    /**
+     Gets subset of individuals who have specific hierarchical level
+     - Parameters:
+        - stratumName: Name of the hierarchical level to look.
+        - stratumLevel: The specific level for the stratum of interest
+     - Returns: An array of individuals (or empty array) with indiviudals
+     */
+    func indiviudalsForStratumLevel(stratumName: String, stratumLevel: String) -> [Individual] {
+        let ret = filter { $0.strata[stratumName] == stratumLevel }
+
+        return ret
+    }
 }
-
-
