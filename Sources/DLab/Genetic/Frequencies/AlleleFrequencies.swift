@@ -41,16 +41,12 @@ public struct AlleleFrequencies: Codable {
     }
     
     mutating public func addGenotype( geno: Genotype ) {
-
-        if geno.ploidy == .Diploid {
+        
+        if geno.ploidy == .Diploid && geno.masking == .NoMasking {
             numDiploid  += 1.0
             if geno.isHeterozygote {
                 numHets += 1.0
             }
-        }
-        
-        if geno.masking == .NoMasking {
-            print("no masking")
             if !geno.left.isEmpty {
                 N += 1.0
                 counts[ geno.left, default: 0.0 ] += 1.0
@@ -59,8 +55,10 @@ public struct AlleleFrequencies: Codable {
                 N += 1.0
                 counts[ geno.right, default: 0.0 ] += 1.0
             }
+            return
         }
-        else {
+        else if geno.masking != .NoMasking {
+            // either not diploid or masked
             if geno.masking != .MotherLeft && !geno.left.isEmpty {
                 N += 1.0
                 counts[ geno.left, default: 0.0 ] += 1.0
@@ -70,6 +68,7 @@ public struct AlleleFrequencies: Codable {
                 counts[ geno.right, default: 0.0 ] += 1.0
             }
         }
+        
         
     }
     

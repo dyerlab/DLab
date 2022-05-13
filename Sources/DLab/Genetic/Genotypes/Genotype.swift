@@ -102,7 +102,7 @@ public struct Genotype: Codable, Equatable, CustomStringConvertible {
     
     /// Sets alleles from raw data with 0 or more alleles separated by colon.
     public mutating func setAlleles( raw: String ) {
-        let rawAlleles = raw.components(separatedBy: ":").sorted().filter{ !$0.isEmpty }
+        let rawAlleles = raw.components(separatedBy: ":").filter{ !$0.isEmpty }.sorted(by: { $0.compare($1, options: .numeric) == .orderedAscending })
         
         if rawAlleles.count == 1 {
             left = rawAlleles[0]
