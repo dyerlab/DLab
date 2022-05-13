@@ -60,12 +60,10 @@ class StratumTests: XCTestCase {
         print("The Family: \n \(data)")
         XCTAssertEqual( data.count, 15 )
         
-        print("loci: \(data.frequencies.keys.sorted())")
-        
-        if let freqs = data.frequencies["cf020"] {
-            print("Pollen Frequencies:\n\(freqs)")
+        XCTAssertEqual( data.frequencies.keys.sorted(), ["cf020", "cf125", "cf213", "cf273", "cf581", "cf585", "cf597", "cf634", "cf701"] )
+        if let freq = data.frequencies["cf020"] {
+            print("\(freq)")
         }
-        
         
     }
     

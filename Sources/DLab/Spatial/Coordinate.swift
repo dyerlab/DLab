@@ -13,42 +13,33 @@ import CoreLocation
  The generic location structure.
  */
 public struct Coordinate: Codable, CustomStringConvertible {
+
+    /// The coordiante in the y-axis
+    public var longitude: Double?
     
     /// The coordinate in the x-axis
-    public var latitude: Double = Double.nan
+    public var latitude: Double?
     
-    /// The coordiante in the y-axis
-    public var longitude: Double = Double.nan
-    
-    /// The coordinate in the z-axis
-    public var elevation: Double = Double.nan
+
     
     /// Empty coordinate has no lat/lon
     public var isEmpty: Bool {
-        return longitude == .nan && latitude == .nan
-    }
-    
-    /// Flag to show that this has elevation
-    public var hasElevation: Bool {
-        return !self.elevation.isNaN
+        return latitude == longitude && latitude == nil
     }
     
     /// Overload of string convertible
     public var description: String {
-        if hasElevation {
-            return String("\(longitude), \(latitude), \(elevation)")
+        if let lat = latitude,
+           let lon = longitude {
+            return String("\(lon), \(lat)")
         } else {
-            return String("\(longitude), \(latitude)")
+            return String("- , -")
         }
     }
     
     /// Keys to location
     public var keys: [String] {
-        if !hasElevation {
-            return ["Longitude","Latitude"]
-        } else {
-            return ["Longitude","Latitude","Elevation"]
-        }
+        return ["Longitude","Latitude"]
     }
     
 }

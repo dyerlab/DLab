@@ -103,7 +103,7 @@ extension Individual {
     static public func Default() -> Individual {
         
         let ind = Individual()
-        ind.coord = Coordinate(latitude: 36, longitude: -77, elevation: 42)
+        ind.coord = Coordinate(longitude: -77, latitude: 36)
         ind.strata["Population"] = "RVA"
         ind.strata["Region"] = "Piedmont"
         
