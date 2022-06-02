@@ -99,6 +99,7 @@ public class DataStore {
 }
 
 extension DataStore {
+    
     public static func Default() -> DataStore {
         let store = DataStore()
         let data = store.bajaData()
