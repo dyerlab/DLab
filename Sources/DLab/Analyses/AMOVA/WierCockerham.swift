@@ -10,7 +10,7 @@ import Foundation
 
 public struct WierCockerham {
     
-    let D: Matrix
+    public let D: Matrix
     let strata: [String]
     let dfT: Double
     var dfA: Double {
