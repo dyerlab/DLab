@@ -27,7 +27,9 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+import MapKit
 import Foundation
+import CoreLocation
 
 public class Stratum: Codable {
     public var id: UUID = .init()
@@ -127,6 +129,35 @@ extension Stratum: Hashable {
         return lhs.id == rhs.id
     }
 }
+
+
+
+// MARK: - Extension for Spatial Stuff
+extension Stratum {
+    
+    public var coordinates: [CLLocationCoordinate2D] {
+        
+        if self.isFamily {
+            if let mom = self.mother,
+               let coord = mom.coord {
+                return [ CLLocationCoordinate2D(coordinate: coord)]
+            }
+            else {
+                return Array<CLLocationCoordinate2D>()
+            }
+        } else {
+            return self.individuals.spatialLocations
+        }
+    }
+    
+    public var region: MKCoordinateRegion {
+        return self.coordinates.region
+    }
+    
+}
+
+
+
 
 
 
