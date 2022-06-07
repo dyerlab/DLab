@@ -38,7 +38,7 @@ import MapKit
  */
 extension Array where Element == CLLocationCoordinate2D {
     
-    var centroid: CLLocationCoordinate2D {
+    public var centroid: CLLocationCoordinate2D {
         
         if self.isEmpty {
             return CLLocationCoordinate2D(latitude: 37.547082, longitude: -77.451514)
@@ -71,7 +71,7 @@ extension Array where Element == CLLocationCoordinate2D {
                                           CLLocationDegrees((maxLongitude + minLongitude) * 0.5))
     }
 
-    var span: MKCoordinateSpan {
+    public var span: MKCoordinateSpan {
         
         if self.isEmpty {
             return MKCoordinateSpan(latitudeDelta: 100, longitudeDelta: 100)
@@ -105,7 +105,7 @@ extension Array where Element == CLLocationCoordinate2D {
                                 longitudeDelta: maxLongitude - minLongitude)
     }
 
-    var region: MKCoordinateRegion {
+    public var region: MKCoordinateRegion {
         return MKCoordinateRegion(center: centroid, span: span)
     }
 }
