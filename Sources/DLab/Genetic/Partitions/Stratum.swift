@@ -108,6 +108,7 @@ public extension Stratum {
 }
 
 extension Stratum: CustomStringConvertible {
+    
     public var description: String {
         var ret = "Data:\n"
         if let mom = mother {
@@ -121,6 +122,7 @@ extension Stratum: CustomStringConvertible {
 }
 
 extension Stratum: Hashable {
+    
     public func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
@@ -133,10 +135,9 @@ extension Stratum: Hashable {
 
 
 // MARK: - Extension for Spatial Stuff
-extension Stratum {
+public extension Stratum {
     
-    public var coordinates: [CLLocationCoordinate2D] {
-        
+    var coordinates: [CLLocationCoordinate2D] {
         if self.isFamily {
             if let mom = self.mother,
                let coord = mom.coord {
@@ -150,7 +151,7 @@ extension Stratum {
         }
     }
     
-    public var region: MKCoordinateRegion {
+    var region: MKCoordinateRegion {
         return self.coordinates.region
     }
     
@@ -162,10 +163,10 @@ extension Stratum {
 
 
 // MARK: - Extensions for Default Values
-extension Stratum {
+public extension Stratum {
     
     
-    public static func DefaultFamily() -> Stratum {
+    static func DefaultFamily() -> Stratum {
         let headers = ["ID", "OffID", "DNA_type", "type", "longitude", "latitude", "cf020", "cf125", "cf213", "cf273", "cf581", "cf585", "cf597", "cf634", "cf701"]
 
         let data = [["1024PWP", "0", "maternal", "native", "-77.589796", "37.353826", "124:146", "153:157", "128:136", "138:138", "232:232", "177:187", "107:99", "106:108", "130:130"],
