@@ -28,7 +28,9 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 @testable import DLab
+
 import XCTest
+import CoreLocation
 
 class StratumTests: XCTestCase {
     func testNULL() throws {
@@ -67,7 +69,6 @@ class StratumTests: XCTestCase {
 
     func testDefault() throws {
         let data = Stratum.DefaultFamily()
-        print("The Family: \n \(data)")
         XCTAssertEqual(data.count, 15)
 
         XCTAssertEqual(data.frequencies.keys.sorted(), ["cf020", "cf125", "cf213", "cf273", "cf581", "cf585", "cf597", "cf634", "cf701"])
@@ -88,4 +89,42 @@ class StratumTests: XCTestCase {
             XCTAssertEqual(freq.numDiploid, 8.0)
         }
     }
+    
+    
+    
+    func testSpatialFamily() throws {
+        
+        let data = Stratum.DefaultFamily()
+        XCTAssertTrue( data.isFamily )
+        let coords = data.coordinates
+    
+        XCTAssertEqual( coords.count, 1 )
+        XCTAssertEqual( coords.first!.latitude, 37.353826)
+        XCTAssertEqual( coords.first!.longitude, -77.589796)
+        
+        
+        let locations = data.locations
+        XCTAssertEqual( locations.count, 1)
+        XCTAssertEqual( locations.first!.name, "1024PWP")
+        XCTAssertEqual( locations.first!.coordinate, coords.first!)
+        
+        
+    }
+    
+    
+    func testSpatialStratum() throws {
+        
+        let data = Stratum.DefaultStratum()
+        XCTAssertFalse( data.isFamily )
+        let coords = data.coordinates
+    
+        XCTAssertEqual( coords.count, 10 )
+        XCTAssertEqual( coords.first!.latitude, 29.32544972)
+        XCTAssertEqual( coords.first!.longitude, -114.2935239)
+        
+        
+    }
+
+    
+    
 }

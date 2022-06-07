@@ -139,13 +139,12 @@ public extension Stratum {
     
     var coordinates: [CLLocationCoordinate2D] {
         if self.isFamily {
-            if let mom = self.mother,
+            var ret = [CLLocationCoordinate2D]()
+            if let mom = mother,
                let coord = mom.coord {
-                return [ CLLocationCoordinate2D(coordinate: coord)]
+                ret.append( CLLocationCoordinate2D(coordinate: coord) )
             }
-            else {
-                return Array<CLLocationCoordinate2D>()
-            }
+            return ret
         } else {
             return self.individuals.spatialLocations
         }
@@ -203,11 +202,12 @@ public extension Stratum {
 
         /* Set up the maternal individual */
         let mom = Individual()
-        mom.strata["MomID"] = data[0][0]
-        if let lon = Double(data[0][5]),
-           let lat = Double(data[0][6])
+        mom.strata["ID"] = data[0][0]
+    
+        if let lon = Double(data[0][4]),
+           let lat = Double(data[0][5])
         {
-            mom.coord = Coordinate(longitude: lat, latitude: lon)
+            mom.coord = Coordinate(longitude: lon, latitude: lat)
         }
         for i in 6 ..< 15 {
             mom.loci[headers[i]] = Genotype(raw: data[0][i])
@@ -217,8 +217,8 @@ public extension Stratum {
         for i in 1 ..< 16 {
             let off = Individual()
             off.strata["MomID"] = data[i][0]
-            if let lon = Double(data[i][5]),
-               let lat = Double(data[i][6])
+            if let lon = Double(data[i][4]),
+               let lat = Double(data[i][5])
             {
                 off.coord = Coordinate(longitude: lat, latitude: lon)
             }

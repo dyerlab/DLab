@@ -36,6 +36,9 @@ import CoreLocation
 public class Individual: Codable {
     public var id: UUID
     public var coord: Coordinate?
+    public var isSpatial: Bool {
+        return coord != nil
+    }
     public var loci: [String: Genotype]
     public var strata: [String: String]
     public var location: Location? {
