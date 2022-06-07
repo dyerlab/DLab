@@ -34,8 +34,8 @@ extension CLLocationCoordinate2D {
     /// Override convience intiializer from coordinate
     init(coordinate: Coordinate) {
         self.init()
-        longitude = coordinate.longitude ?? 0.0
-        latitude = coordinate.latitude ?? 0.0
+        longitude = coordinate.longitude
+        latitude = coordinate.latitude 
     }
 }
 

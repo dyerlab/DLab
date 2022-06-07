@@ -151,7 +151,7 @@ public extension Stratum {
     }
     
     var region: MKCoordinateRegion {
-        return self.coordinates.region
+        return self.coordinates.region.buffered(scale: 1.1)
     }
     
     var locations: [Location] {

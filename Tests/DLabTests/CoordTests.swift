@@ -31,13 +31,6 @@
 import XCTest
 
 class CoordTests: XCTestCase {
-    func testNull() throws {
-        let coord = Coordinate()
-        XCTAssertTrue(coord.isEmpty)
-    }
 
-    func testFull() throws {
-        let coord = Coordinate(longitude: -77, latitude: 36)
-        XCTAssertFalse(coord.isEmpty)
-    }
+
 }

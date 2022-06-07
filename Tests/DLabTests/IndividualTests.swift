@@ -41,8 +41,8 @@ class IndividualTests: XCTestCase {
     func testDefault() throws {
         let ind = Individual.Default()
         XCTAssertEqual(ind.strata.keys.sorted(), ["Population", "Region"])
-        XCTAssertEqual(ind.coord!.latitude!, 36.0)
-        XCTAssertEqual(ind.coord!.longitude!, -77.0)
+        XCTAssertEqual(ind.coord!.latitude, 36.0)
+        XCTAssertEqual(ind.coord!.longitude, -77.0)
         XCTAssertEqual(ind.loci.keys.sorted(), ["LTRS", "WNT", "EN", "EF", "ZMP", "AML"].sorted())
         print("\(ind)")
     }

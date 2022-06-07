@@ -35,24 +35,18 @@ import Foundation
  */
 public struct Coordinate: Codable, CustomStringConvertible {
     /// The coordiante in the y-axis
-    public var longitude: Double?
+    public var longitude: Double
 
     /// The coordinate in the x-axis
-    public var latitude: Double?
-
-    /// Empty coordinate has no lat/lon
-    public var isEmpty: Bool {
-        return latitude == longitude && latitude == nil
-    }
+    public var latitude: Double
 
     /// Overload of string convertible
     public var description: String {
-        if let lat = latitude,
-           let lon = longitude
-        {
-            return String("\(lon), \(lat)")
-        } else {
-            return String("- , -")
-        }
+        return String("\(self.longitude), \(self.latitude)")
+    }
+    
+    public init(longitude: Double, latitude: Double  ) {
+        self.latitude = latitude
+        self.longitude = longitude
     }
 }
