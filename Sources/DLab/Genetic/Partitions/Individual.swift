@@ -28,13 +28,24 @@
 //  You should have received a copy of the GNU General Public License
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+
 import Foundation
+import CoreLocation
+
 
 public class Individual: Codable {
     public var id: UUID
     public var coord: Coordinate?
     public var loci: [String: Genotype]
     public var strata: [String: String]
+    public var location: Location? {
+        let name = self.strata["ID",default: self.id.uuidString]
+        if let coord = coord {
+            return Location(name: name, coordinate: CLLocationCoordinate2D(coordinate: coord))
+        } else {
+            return nil
+        }
+    }
 
     /// Default initiatiator
     public init() {

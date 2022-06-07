@@ -155,6 +155,21 @@ public extension Stratum {
         return self.coordinates.region
     }
     
+    var locations: [Location] {
+        var ret = [Location]()
+
+        if self.isFamily,
+           let mom = mother,
+           let loc = mom.location {
+            ret.append( loc )
+        }
+        else {
+            ret.append( contentsOf:  self.individuals.compactMap( { $0.location }))
+        }
+        
+        return ret
+    }
+    
 }
 
 
