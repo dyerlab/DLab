@@ -49,6 +49,13 @@ public class Individual: Codable {
             return nil
         }
     }
+    
+    public var momID: String {
+        return self.strata["ID", default: ""]
+    }
+    public var offID: String {
+        return self.strata["OffID", default: ""]
+    }
 
     /// Default initiatiator
     public init() {
@@ -103,6 +110,7 @@ extension Individual: CustomStringConvertible {
 }
 
 public extension Individual {
+    
     static func Default() -> Individual {
         let ind = Individual()
         ind.coord = Coordinate(longitude: -77, latitude: 36)
@@ -120,4 +128,38 @@ public extension Individual {
 
         return ind
     }
+    
+    
+    static func DefaultMom() -> Individual {
+        let ind = Individual()
+        
+        ind.strata["ID"] = "Big Bertha"
+        ind.strata["OffID"] = "0"
+        ind.coord = Coordinate(longitude: -77, latitude: 36)
+        let loci = ["1:1", "1:2", "1:2"]
+        let names = ["LTRS", "WNT", "EN"]
+        for i in 0 ..< 3 {
+            ind.loci[names[i]] = Genotype(raw: loci[i])
+        }
+        
+        return ind
+    }
+    
+    static func DefaultOffspring() -> Individual {
+        let ind = Individual()
+        
+        ind.strata["ID"] = "Big Bertha"
+        ind.strata["OffID"] = "1"
+        ind.coord = Coordinate(longitude: -77, latitude: 36)
+        let loci = ["1:1", "1:2", "1:2"]
+        let names = ["LTRS", "WNT", "EN"]
+        for i in 0 ..< 3 {
+            ind.loci[names[i]] = Genotype(raw: loci[i])
+        }
+        
+        return ind
+    }
+
+    
+    
 }
