@@ -160,7 +160,7 @@ public extension Individual {
         
         var mr = Genotype(raw: "1:2")
         mr.masking = .MotherRight
-        ind.loci["ML"] = mr
+        ind.loci["MR"] = mr
         
         var md = Genotype(raw: "1:2")
         md.masking = .MissingData
