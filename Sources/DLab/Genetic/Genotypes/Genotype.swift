@@ -34,6 +34,13 @@ public struct Genotype: Codable, Equatable, CustomStringConvertible {
     /// Keeping the alleles as a diploid set of strings.
     public var left: String = ""
     public var right: String = ""
+    
+    public var maskedLeft: String {
+        return self.masking == .MotherLeft ? "" : self.left
+    }
+    public var maskedRight: String {
+        return self.masking == .MotherRight ? self.right : ""
+    }
 
     /// By default
     public var masking: AlleleMasking = .NoMasking
