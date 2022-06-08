@@ -82,6 +82,18 @@ public class Individual: Codable, Identifiable {
     }
 }
 
+
+extension Individual: Hashable {
+    
+    public static func == (lhs: Individual, rhs: Individual) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(self.id)
+    }
+}
+
 extension Individual: CustomStringConvertible {
     /// Overload of description for plotting
     public var description: String {
