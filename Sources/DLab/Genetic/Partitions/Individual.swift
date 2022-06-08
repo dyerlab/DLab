@@ -33,7 +33,7 @@ import Foundation
 import CoreLocation
 
 
-public class Individual: Codable {
+public class Individual: Codable, Identifiable {
     public var id: UUID
     public var coord: Coordinate?
     public var isSpatial: Bool {
