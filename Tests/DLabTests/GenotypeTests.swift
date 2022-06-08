@@ -39,6 +39,9 @@ class GenotypeTests: XCTestCase {
         XCTAssertEqual(geno.ploidy, .Missing)
         XCTAssertEqual(geno, Genotype())
         XCTAssertEqual(geno.asVector(alleles: ["A", "B", "C"]), [0.0, 0.0, 0.0])
+        XCTAssertEqual( geno.left, geno.maskedLeft )
+        XCTAssertEqual( geno.right, geno.maskedRight )
+
     }
 
     func testHaplid() throws {
@@ -49,6 +52,9 @@ class GenotypeTests: XCTestCase {
         XCTAssertEqual(geno.ploidy, .Haploid)
         XCTAssertEqual(geno, Genotype(raw: "A"))
         XCTAssertEqual(geno.asVector(alleles: ["A", "B", "C"]), [1.0, 0.0, 0.0])
+        XCTAssertEqual( geno.left, geno.maskedLeft )
+        XCTAssertEqual( geno.right, geno.maskedRight )
+
     }
 
     func testHeterozygote() throws {
@@ -59,6 +65,9 @@ class GenotypeTests: XCTestCase {
         XCTAssertEqual(geno.ploidy, .Diploid)
         XCTAssertEqual(geno, Genotype(raw: "A:B"))
         XCTAssertEqual(geno.asVector(alleles: ["A", "B", "C"]), [1.0, 1.0, 0.0])
+        XCTAssertEqual( geno.left, geno.maskedLeft )
+        XCTAssertEqual( geno.right, geno.maskedRight )
+
     }
 
     func testHomozygote() throws {
@@ -69,8 +78,56 @@ class GenotypeTests: XCTestCase {
         XCTAssertEqual(geno.ploidy, .Diploid)
         XCTAssertEqual(geno, Genotype(raw: "A:A"))
         XCTAssertEqual(geno.asVector(alleles: ["A", "B", "C"]), [2.0, 0.0, 0.0])
+        XCTAssertEqual( geno.left, geno.maskedLeft )
+        XCTAssertEqual( geno.right, geno.maskedRight )
+
     }
 
+    
+    func testMaskedAllelesUndefined() throws {
+        let geno = Genotype.DefaultHeterozygoteUndefined()
+        XCTAssertFalse(geno.isEmpty)
+        XCTAssertTrue(geno.isHeterozygote)
+        XCTAssertEqual(String("\(geno)"), "A:B")
+        XCTAssertEqual(geno.ploidy, .Diploid)
+        XCTAssertEqual(geno, Genotype(raw: "A:B"))
+        XCTAssertEqual(geno.asVector(alleles: ["A", "B", "C"]), [1.0, 1.0, 0.0])
+        XCTAssertEqual( geno.left, geno.maskedLeft )
+        XCTAssertEqual( geno.masking, .Undefined)
+        XCTAssertEqual( geno.right, geno.maskedRight )
+    }
+    
+    
+    func testMaskedAllelesMotherRight() throws {
+        let geno = Genotype.DefaultHeterozygoteMomRight()
+        XCTAssertFalse(geno.isEmpty)
+        XCTAssertTrue(geno.isHeterozygote)
+        XCTAssertEqual(String("\(geno)"), "A")
+        XCTAssertEqual(geno.ploidy, .Diploid)
+        XCTAssertEqual(geno, Genotype(raw: "A:B"))
+        XCTAssertEqual(geno.asVector(alleles: ["A", "B", "C"]), [1.0, 1.0, 0.0])
+        XCTAssertEqual( geno.left, geno.maskedLeft )
+        XCTAssertEqual( geno.masking, .MotherRight)
+        XCTAssertEqual( geno.right, "B" )
+        XCTAssertEqual( geno.maskedLeft, "A")
+        XCTAssertEqual( geno.maskedRight, "")
+    }
+    
+    func testMaskedAllelesMotherLeft() throws {
+        let geno = Genotype.DefaultHeterozygoteMomLeft()
+        XCTAssertFalse(geno.isEmpty)
+        XCTAssertTrue(geno.isHeterozygote)
+        XCTAssertEqual(String("\(geno)"), "B")
+        XCTAssertEqual(geno.ploidy, .Diploid)
+        XCTAssertEqual(geno, Genotype(raw: "A:B"))
+        XCTAssertEqual(geno.asVector(alleles: ["A", "B", "C"]), [1.0, 1.0, 0.0])
+        XCTAssertEqual( geno.left, "A" )
+        XCTAssertEqual( geno.masking, .MotherLeft)
+        XCTAssertEqual( geno.maskedLeft, "")
+        XCTAssertEqual( geno.maskedRight, "B")
+    }
+    
+    
     func testAMOVADistances() throws {
         let AA = Genotype(raw: "A:A")
         let AB = Genotype(raw: "A:B")

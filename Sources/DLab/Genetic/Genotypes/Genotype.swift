@@ -38,8 +38,9 @@ public struct Genotype: Codable, Equatable, CustomStringConvertible {
     public var maskedLeft: String {
         return self.masking == .MotherLeft ? "" : self.left
     }
+    
     public var maskedRight: String {
-        return self.masking == .MotherRight ? self.right : ""
+        return self.masking == .MotherRight ? "" : self.right
     }
 
     /// By default
