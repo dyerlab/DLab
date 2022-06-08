@@ -50,13 +50,7 @@ public class Individual: Codable {
         }
     }
     
-    public var momID: String {
-        return self.strata["ID", default: ""]
-    }
-    public var offID: String {
-        return self.strata["OffID", default: ""]
-    }
-
+    
     /// Default initiatiator
     public init() {
         id = UUID()

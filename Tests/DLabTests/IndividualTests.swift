@@ -47,15 +47,5 @@ class IndividualTests: XCTestCase {
         print("\(ind)")
     }
     
-    func testDefaultMom() throws {
-        let ind = Individual.DefaultMom()
-        XCTAssertEqual( ind.momID, "Big Bertha")
-        XCTAssertEqual( ind.offID, "0")
-    }
-    
-    func testDefaultOffspring() throws {
-        let ind = Individual.DefaultOffspring()
-        XCTAssertEqual( ind.momID, "Big Bertha")
-        XCTAssertEqual( ind.offID, "1")
-    }
+
 }
