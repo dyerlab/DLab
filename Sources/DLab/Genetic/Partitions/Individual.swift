@@ -145,14 +145,31 @@ public extension Individual {
         ind.strata["ID"] = "Big Bertha"
         ind.strata["OffID"] = "1"
         ind.coord = Coordinate(longitude: -77, latitude: 36)
-        let loci = ["1:1", "1:2", "1:2"]
-        let names = ["LTRS", "WNT", "EN"]
-        for i in 0 ..< 3 {
-            ind.loci[names[i]] = Genotype(raw: loci[i])
-        }
+        
+        var nm = Genotype(raw: "1:2")
+        nm.masking = .NoMasking
+        ind.loci["NM"] = nm
+        
+        var un = Genotype(raw: "1:2")
+        un.masking = .NoMasking
+        ind.loci["UN"] = un
+        
+        var ml = Genotype(raw: "1:2")
+        ml.masking = .MotherLeft
+        ind.loci["ML"]  = ml
+        
+        var mr = Genotype(raw: "1:2")
+        mr.masking = .MotherRight
+        ind.loci["ML"] = mr
+        
+        var md = Genotype(raw: "1:2")
+        md.masking = .MissingData
+        ind.loci["MD"] = md
         
         return ind
     }
+    
+    
 
     
     
