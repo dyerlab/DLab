@@ -183,35 +183,35 @@ public extension Genotype {
 }
 
 extension Genotype {
-    static func DefaultNULL() -> Genotype {
+    public static func DefaultNULL() -> Genotype {
         return Genotype()
     }
 
-    static func DefaultHaploid() -> Genotype {
+    public static func DefaultHaploid() -> Genotype {
         return Genotype(raw: "A")
     }
 
-    static func DefaultHeterozygote() -> Genotype {
+    public static func DefaultHeterozygote() -> Genotype {
         return Genotype(alleles: ("A", "B"))
     }
 
-    static func DefaultHomozygote() -> Genotype {
+    public static func DefaultHomozygote() -> Genotype {
         return Genotype(alleles: ("A", "A"))
     }
 
-    static func DefaultHeterozygoteMomLeft() -> Genotype {
+    public static func DefaultHeterozygoteMomLeft() -> Genotype {
         var geno = Genotype(raw: "A:B")
         geno.masking = .MotherLeft
         return geno
     }
 
-    static func DefaultHeterozygoteMomRight() -> Genotype {
+    public static func DefaultHeterozygoteMomRight() -> Genotype {
         var geno = Genotype(raw: "A:B")
         geno.masking = .MotherRight
         return geno
     }
 
-    static func DefaultHeterozygoteUndefined() -> Genotype {
+    public static func DefaultHeterozygoteUndefined() -> Genotype {
         var geno = Genotype(raw: "A:B")
         geno.masking = .Undefined
         return geno
