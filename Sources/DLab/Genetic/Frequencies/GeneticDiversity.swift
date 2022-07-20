@@ -69,9 +69,11 @@ extension GeneticDiversity: CustomStringConvertible {
 }
 
 public extension GeneticDiversity {
+    
     static func Default() -> GeneticDiversity {
         let freq = AlleleFrequencies.Default()
         let diversity = GeneticDiversity(frequencies: freq)
         return diversity
     }
+    
 }
