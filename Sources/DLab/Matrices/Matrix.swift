@@ -291,6 +291,16 @@ public extension Matrix {
 }
 
 public extension Matrix {
+    
+    static func Identity( N: Int ) -> Matrix {
+        
+        let I = Matrix(N,N,0.0)
+        for i in 0 ..< N {
+            I[i,i] = 1.0
+        }
+        return I
+    }
+    
     static func DesignMatrix(strata: [String]) -> Matrix {
         let r = strata.count
         let colNames = [String](Set<String>(strata)).sorted()
@@ -307,7 +317,6 @@ public extension Matrix {
     static func IdempotentHatMatrix(strata: [String]) -> Matrix {
         let X = Matrix.DesignMatrix(strata: strata)
         let H = X .* GeneralizedInverse(X.transpose .* X) .* X.transpose
-
         return H
     }
 }

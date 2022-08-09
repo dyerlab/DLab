@@ -42,7 +42,7 @@ public class Individual: Codable, Identifiable {
     public var loci: [String: Genotype]
     public var strata: [String: String]
     public var location: Location? {
-        let name = self.strata["ID",default: self.id.uuidString]
+        let name = self.strata["ID", default: self.id.uuidString]
         if let coord = coord {
             return Location(name: name, coordinate: CLLocationCoordinate2D(coordinate: coord))
         } else {
