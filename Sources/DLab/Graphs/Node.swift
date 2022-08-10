@@ -30,26 +30,23 @@
 import Foundation
 
 struct Node: Codable {
-    let id: UUID
-    var label: String
-    var size: Double
-    var edges: [Edge]
-    var coordinate: Vector
-
+    var id: UUID = UUID()
+    var label: String = ""
+    var size: Double = 0.0
+    var edges: [Edge] = [Edge]()
+    
     enum CodingKeys: String, CodingKey {
         case id
         case label
         case size
         case edges
-        case coordinate
     }
-
-    init(label: String, size: Double, coord: [Double]) {
-        id = UUID()
+    
+    init() { }
+    
+    init(label: String, size: Double ) {
         self.label = label
         self.size = size
-        coordinate = coord
-        edges = [Edge]()
     }
 
     init(from decoder: Decoder) throws {
@@ -58,7 +55,6 @@ struct Node: Codable {
         label = try values.decode(String.self, forKey: .label)
         size = try values.decode(Double.self, forKey: .size)
         edges = try values.decode(Array.self, forKey: .edges)
-        coordinate = try values.decode(Vector.self, forKey: .coordinate)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -67,9 +63,9 @@ struct Node: Codable {
         try container.encode(label, forKey: .label)
         try container.encode(size, forKey: .size)
         try container.encode(edges, forKey: .edges)
-        try container.encode(coordinate, forKey: .coordinate)
     }
 }
+
 
 extension Node: Equatable {
     static func == (lhs: Node, rhs: Node) -> Bool {
@@ -77,8 +73,16 @@ extension Node: Equatable {
     }
 }
 
+
+extension Node: Hashable {
+    func hash(into hasher: inout Hasher) {
+        hasher.combine( self.id )
+    }
+}
+
+
 extension Node: CustomStringConvertible {
     var description: String {
-        return String("\(label): \(size) ( \(coordinate) )")
+        return String("\(label): \(size)")
     }
 }

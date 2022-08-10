@@ -30,25 +30,23 @@
 import Foundation
 
 struct Edge: Codable {
-    var from: UUID
-    var to: UUID
+    var node: Node
     var weight: Double
 
-    init(from: Node, to: Node, weight: Double) {
-        self.from = from.id
-        self.to = to.id
+    init(node: Node, weight: Double) {
+        self.node = node
         self.weight = weight
     }
 }
 
 extension Edge: Equatable {
     static func == (lhs: Edge, rhs: Edge) -> Bool {
-        return lhs.from == rhs.from && lhs.to == rhs.to && lhs.weight == rhs.weight
+        return lhs.node == rhs.node && lhs.weight == rhs.weight
     }
 }
 
 extension Edge: CustomStringConvertible {
     var description: String {
-        return String("\(from.description) -> \(to.description)  \(weight)")
+        return String("\(node.description) \(weight)")
     }
 }

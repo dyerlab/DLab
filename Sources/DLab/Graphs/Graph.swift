@@ -29,6 +29,41 @@
 
 import Foundation
 
+
+public class Graph {
+    private var nodes = Set<Node>()
+    var isDirected: Bool = false
+    
+    var count: Int {
+        return nodes.count
+    }
+    
+    var labels: [String] {
+        return self.nodes.compactMap { $0.label }.sorted { $0.localizedStandardCompare($1) == .orderedAscending }
+    }
+    
+    func addNode( label: String, size: Double ) {
+        let newNode = Node(label: label, size: size)
+        nodes.insert( newNode )
+    }
+    
+    func getNode( label: String ) -> Node? {
+        return self.nodes.first(where: {$0.label == label} )
+    }
+    
+    func addEdge( from: String, to: String, weight: Double ) {
+        guard var fromNode = getNode(label: from) else { return }
+        guard var toNode = getNode(label: to) else { return }
+        fromNode.edges.append( Edge(node: toNode, weight: weight ))
+        if !self.isDirected {
+            toNode.edges.append( Edge(node: fromNode, weight: weight ))
+        }
+    }
+}
+
+
+
+/*
 class Graph {
     var nodes: [Node]
     var edges: [Edge]
@@ -37,6 +72,8 @@ class Graph {
         return nodes.count
     }
 
+    
+    /*
     var adjacency: Matrix {
         let N = nodes.count
         let ret = Matrix(N, N)
@@ -73,9 +110,11 @@ class Graph {
         return ret
     }
 
+    
     var shortestPaths: Matrix {
         return shortestPath(A: incidence)
     }
+    */
 
     init() {
         nodes = [Node]()
@@ -236,3 +275,6 @@ extension Graph {
         return graph
     }
 }
+
+
+*/
