@@ -26,7 +26,7 @@ final class NodeTests: XCTestCase {
         XCTAssertEqual(Node_Aqu.size, 13.267567610943)
 
         print(String("\(Node_Aqu)"))
-        XCTAssertEqual(String("\(Node_Aqu)"), "Aqu: 13.267567610943)")
+        XCTAssertEqual(String("\(Node_Aqu)"), "Aqu: 13.267567610943")
 
         XCTAssertFalse(Node_73 == Node_Aqu)
 

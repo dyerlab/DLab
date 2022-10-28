@@ -22,7 +22,11 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "DLab",
-            dependencies: []
+            dependencies: [],
+            resources: [
+                .copy("Resources/tree.png"),
+                .copy("Resources/dyer.jpeg")
+            ]
         ),
         .testTarget(
             name: "DLabTests",
