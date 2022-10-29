@@ -25,7 +25,8 @@ let package = Package(
             dependencies: [],
             resources: [
                 .copy("Resources/tree.png"),
-                .copy("Resources/dyer.jpeg")
+                .copy("Resources/dyer.jpeg"),
+                .copy("Resources/arapat.csv")
             ]
         ),
         .testTarget(
