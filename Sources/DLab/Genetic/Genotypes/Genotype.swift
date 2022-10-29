@@ -111,6 +111,12 @@ public struct Genotype: Codable, Equatable, CustomStringConvertible {
         return lhs.left == rhs.left && lhs.right == rhs.right
     }
 
+    /// Determines if value can be diploid locus
+    public static func canBeGenotype( raw: String ) -> Bool {
+        let rawAlleles = raw.components(separatedBy: ":").filter { !$0.isEmpty }
+        return rawAlleles.count == 2
+    }
+    
     /// Sets alleles from raw data with 0 or more alleles separated by colon.
     public mutating func setAlleles(raw: String) {
         let rawAlleles = raw.components(separatedBy: ":").filter { !$0.isEmpty }.sorted(by: { $0.compare($1, options: .numeric) == .orderedAscending })

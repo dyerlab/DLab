@@ -8,41 +8,52 @@
 import Foundation
 
 public struct DataColumns {
-    let header: [String]?
+    private let header: [String]
     var strata: [Int]
-    let latitude: Int?
-    let longitude: Int?
+    var idCol: Int? = nil
+    var latitude: Int? = nil
+    var longitude: Int? = nil
     var loci: [Int]
+    
+    var isSpatial: Bool {
+        return latitude != nil && longitude != nil
+    }
+    
+    var hasID: Bool {
+        return idCol != nil
+    }
+    
+    var isEmpty: Bool {
+        return strata.isEmpty && loci.isEmpty
+    }
     
     init( raw: [[String]] ) {
         assert( raw.count > 0 )
-        self.header = raw.first
+        self.header = raw.first!
         self.strata = [Int]()
         self.loci = [Int]()
         
-        var colsToCheck: [Int] = Array( 0..<header!.count )
-        
-        if let latCol = header?.firstIndex(of: "Longitude"),
-           let lonCol = header?.firstIndex(of: "Latitude") {
-            latitude = latCol
-            longitude = lonCol
-            colsToCheck = colsToCheck.filter { $0 == latitude }
-            colsToCheck = colsToCheck.filter { $0 == longitude }
-        } else {
-            self.latitude = nil
-            self.longitude = nil
-        }
-        
-        for col in colsToCheck {
-            for i in 1 ..< raw.count {
-                let val = raw[i][col]
-                let locus = val.contains(where: {$0 == ":"} )
-                if locus == true  {
-                    loci.append( col )
-                    break
+        for col in Array( 0 ..< header.count ) {
+            if header[col] == "Longitude" {
+                longitude = col
+            }
+            else if header[col] == "Latitude" {
+                latitude = col
+            }
+            else if header[col] == "ID" {
+                idCol = col
+            }
+            else {
+                for i in 1 ..< raw.count {
+                    if Genotype.canBeGenotype(raw: raw[i][col]) {
+                        loci.append( col )
+                        break
+                    }
+                }
+                if !loci.contains( col ) {
+                    strata.append( col )
                 }
             }
-            strata.append( col )
         }
     }
 }

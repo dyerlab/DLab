@@ -23,12 +23,32 @@ public struct CSVReader {
     }
     
     func asDataStore() -> DataStore? {
-        guard let headers = contents.first else { return nil }
-        let latCol = headers.firstIndex(of: "Latitude" )
-        let lonCol = headers.firstIndex(of: "Longitude" )
-        
         let ret = DataStore()
+        let dcol = DataColumns(raw: self.contents)
+        if dcol.isEmpty  {
+            return nil 
+        }
+        let header = self.contents.first!
         
+        for idx in 1 ..< contents.count {
+            let vals = contents[idx]
+            if !vals.isEmpty {
+                let ind = Individual()
+                for col in dcol.strata {
+                    ind.strata[ header[col] ] = vals[col]
+                }
+                for col in dcol.loci {
+                    ind.loci[ header[col] ] = Genotype(raw: vals[col] )
+                }
+                if dcol.isSpatial,
+                   let lat = Double(vals[dcol.latitude!]),
+                   let lon = Double( vals[dcol.longitude!]) {
+                    ind.coord = Coordinate(longitude: lon, latitude: lat)
+                }
+                
+                ret.in
+            }
+        }
         
         return ret
     }
