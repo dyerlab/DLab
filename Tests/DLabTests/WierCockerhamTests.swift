@@ -13,8 +13,8 @@ final class WierCockerhamTests: XCTestCase {
 
     func testWC() throws {
         let store = DataStore.Default()
-        let son101 = store.stratumAtLevel(name: "101", level: "Population")
-        let son102 = store.stratumAtLevel(name: "102", level: "Population")
+        let son101 = store.stratum(named: "101")
+        let son102 = store.stratum(named: "102")
         
         
         var inds = son101.individuals

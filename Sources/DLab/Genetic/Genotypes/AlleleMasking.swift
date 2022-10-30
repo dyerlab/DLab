@@ -30,19 +30,19 @@
 import Foundation
 
 /// An enum to idicate the masking level for genotypes in family arrays.
-public enum AlleleMasking: Int, Codable {
+public enum AlleleMasking: String, Codable {
     /// No masking
-    case NoMasking = 0
+    case NoMasking = "No Masking"
 
     /// Mother has left allele
-    case MotherLeft
+    case MotherLeft = "Mom Allele Left"
 
     /// Mother is right allele
-    case MotherRight
+    case MotherRight = "Mom Allele Right"
 
     /// Cannot determine masking due to shared heterozygote
-    case Undefined
+    case Undefined = "Mom/Offpsring Same Heterozygote"
 
     /// Missing data
-    case MissingData
+    case MissingData = "Missing Data"
 }

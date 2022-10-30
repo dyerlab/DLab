@@ -41,13 +41,21 @@ class StratumTests: XCTestCase {
 
     func testArapat() throws {
         let data = Stratum.DefaultStratum()
-        let headers = ["Population", "Region", "Longitude", "Latitude", "AML", "ATPS", "EF", "EN", "LTRS", "MP20", "WNT", "ZMP"]
+        let headers = ["Population", "Longitude", "Latitude", "AML", "ATPS", "EF", "EN", "LTRS", "MP20", "WNT", "ZMP"]
         XCTAssertEqual(data.count, 10)
         XCTAssertEqual(data.header, headers)
 
         if let freq = data.frequencies["AML"] {
             print("\(freq)")
         }
+    }
+    
+    
+    func testIndices() throws {
+        let data = Stratum.DefaultStratum()
+        let ind = data[2]
+        print("ind: \(ind)")
+        XCTAssertEqual( ind.stratum, "88")
     }
 
     func testInitFamily() throws {
@@ -67,24 +75,34 @@ class StratumTests: XCTestCase {
         print("famof1:\n\(family)")
     }
 
-    func testDefault() throws {
+    func testDefaultFamily() throws {
         let data = Stratum.DefaultFamily()
         XCTAssertEqual(data.count, 15)
 
-        XCTAssertEqual(data.frequencies.keys.sorted(), ["cf020", "cf125", "cf213", "cf273", "cf581", "cf585", "cf597", "cf634", "cf701"])
+        XCTAssertEqual(data.frequencies.keys.sorted(), ["cf020", "cf125", "cf213",
+                                                        "cf273", "cf581", "cf585",
+                                                        "cf597", "cf634", "cf701"])
         if let freq = data.frequencies["cf597"] {
             print("\(freq)")
-            XCTAssertEqual(freq.alleles, ["99", "103", "105", "107", "109", "113", "115", "117"])
-            XCTAssertEqual(freq.frequencies(alleles: ["99", "103", "105", "107", "109", "113", "115", "117"]),
-                           [1.0 / 15.0, 1.0 / 15.0, 3.0 / 15.0, 3.0 / 15.0, 1.0 / 15.0, 1.0 / 15.0, 4.0 / 15.0, 1.0 / 15.0])
+            XCTAssertEqual(freq.alleles, ["99", "103", "105",
+                                          "107", "109", "113",
+                                          "115", "117"])
+            XCTAssertEqual( freq.frequencies( alleles: ["99", "103", "105",
+                                                        "107", "109", "113",
+                                                        "115", "117"]),
+                           [1.0 / 15.0, 1.0 / 15.0, 3.0 / 15.0,
+                            3.0 / 15.0, 1.0 / 15.0, 1.0 / 15.0,
+                            4.0 / 15.0, 1.0 / 15.0])
             XCTAssertEqual(freq.numHets, 0.0)
             XCTAssertEqual(freq.numDiploid, 0.0)
         }
 
         if let freq = data.frequencies["cf125"] {
             print("\(freq)")
-            XCTAssertEqual(freq.alleles, ["153", "155", "157"])
-            XCTAssertEqual(freq.frequencies(alleles: ["153", "155", "157"]), [9.0 / 23.0, 5.0 / 23.0, 9.0 / 23.0])
+            XCTAssertEqual(freq.alleles,
+                           ["153", "155", "157"])
+            XCTAssertEqual(freq.frequencies(alleles: ["153", "155", "157"]),
+                           [9.0 / 23.0, 5.0 / 23.0, 9.0 / 23.0])
             XCTAssertEqual(freq.numHets, 8.0)
             XCTAssertEqual(freq.numDiploid, 8.0)
         }
@@ -107,22 +125,17 @@ class StratumTests: XCTestCase {
         XCTAssertEqual( locations.count, 1)
         XCTAssertEqual( locations.first!.name, "1024PWP")
         XCTAssertEqual( locations.first!.coordinate, coords.first!)
-        
-        
     }
     
     
     func testSpatialStratum() throws {
-        
         let data = Stratum.DefaultStratum()
+        print("The data are: \(data)\n")
         XCTAssertFalse( data.isFamily )
         let coords = data.coordinates
-    
         XCTAssertEqual( coords.count, 10 )
         XCTAssertEqual( coords.first!.latitude, 29.32544972)
         XCTAssertEqual( coords.first!.longitude, -114.2935239)
-        
-        
     }
 
     

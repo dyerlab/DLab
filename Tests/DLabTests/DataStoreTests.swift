@@ -18,17 +18,20 @@ class DataStoreTests: XCTestCase {
         XCTAssertEqual( data.numInds, 365 )
         XCTAssertEqual( data.count, 39 )
         
-        let dataSon = data.stratumAtLevel(name: "Region", level: "SON")
-        XCTAssertEqual( dataSon.count, 38 )
-        print("\(dataSon)")
         
-        XCTAssertEqual( data.strataKeys, ["Population","Region"])
-        XCTAssertEqual( data.locusKeys, ["AML", "ATPS", "EF", "EN", "LTRS", "MP20", "WNT", "ZMP"] )
+        XCTAssertEqual( data.strataKeys, ["9", "12", "32", "48",
+                                          "51", "58", "64", "73",
+                                          "75", "77", "84", "88",
+                                          "89", "93", "98", "101",
+                                          "102", "153", "156", "157",
+                                          "159", "160", "161", "162",
+                                          "163", "164", "165", "166",
+                                          "168", "169", "171", "173",
+                                          "175", "177", "Aqu", "Const",
+                                          "ESan", "Mat", "SFr"])
+        XCTAssertEqual( data.locusKeys, ["AML", "ATPS", "EF", "EN",
+                                         "LTRS", "MP20", "WNT", "ZMP"] )
         
-        XCTAssertEqual( data.strataLevels(name: "Region"), ["CBP","NBP","SBP","SON"])
-        
-        let regions = data.allStrataForLevel(level: "Region")
-        XCTAssertEqual( regions.count, 4)
         
     }
 

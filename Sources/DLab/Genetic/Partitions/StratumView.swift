@@ -41,11 +41,12 @@ struct StatumView: View {
                     Text("\(key)")
                         .bold()
 
-                    // Stuff
+                    /**
                     ForEach(data.individuals.strataLevels(stratum: key), id: \.self) { value in
                         Text("\(value)")
                             .foregroundColor(.red)
                     }
+                     */
                 }
 
             })

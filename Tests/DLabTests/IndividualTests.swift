@@ -35,17 +35,43 @@ class IndividualTests: XCTestCase {
         let ind = Individual()
         XCTAssertNil(ind.coord)
         XCTAssertEqual(ind.loci.keys.sorted(), [String]())
-        XCTAssertEqual(ind.strata.keys.sorted(), [String]())
+        XCTAssertEqual(ind.stratum, "")
     }
 
     func testDefault() throws {
         let ind = Individual.Default()
-        XCTAssertEqual(ind.strata.keys.sorted(), ["Population", "Region"])
+        XCTAssertEqual(ind.stratum, "RVA")
+        XCTAssertEqual( ind.offspring, "")
         XCTAssertEqual(ind.coord!.latitude, 36.0)
         XCTAssertEqual(ind.coord!.longitude, -77.0)
         XCTAssertEqual(ind.loci.keys.sorted(), ["LTRS", "WNT", "EN", "EF", "ZMP", "AML"].sorted())
         print("\(ind)")
     }
     
+    func testCoordinates() throws {
+        let ind = Individual()
+        XCTAssertNil( ind.coord )
+        XCTAssertNil( ind.location )
+        XCTAssertFalse( ind.isSpatial )
+    }
+    
+    
+    func testEncoding() throws {
+        
+        let ind = Individual.Default()
+        
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+        let data = try encoder.encode( ind )
+        print(String(data: data, encoding: .utf8)!)
+        
+        XCTAssertTrue( !data.isEmpty )
+        
+        let decoder = JSONDecoder()
+        let ind2 = try decoder.decode(Individual.self, from: data)
+
+        XCTAssertEqual( ind, ind2 )
+        
+    }
 
 }

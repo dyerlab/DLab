@@ -38,11 +38,7 @@ public class DataStore {
     }
     
     public var strataKeys: [String] {
-        var ret = [String]()
-        for key in strata.keys {
-            ret.append( contentsOf: strata[key]!.individuals.strataKeys )
-        }
-        return Set(ret).unique().sorted { $0.localizedStandardCompare($1) == .orderedAscending }
+        return strata.keys.sorted { $0.localizedStandardCompare($1) == .orderedAscending }
     }
     
     public var locusKeys: [String] {
@@ -59,6 +55,11 @@ public class DataStore {
 
     public init() {}
 
+    
+    public func stratum( named: String ) -> Stratum {
+        return self.strata[named, default: Stratum() ]
+    }
+    /*
     public func strataLevels(name: String ) -> [String] {
         var ret = [String]()
         
@@ -68,6 +69,7 @@ public class DataStore {
         
         return Set(ret).unique().sorted { $0.localizedStandardCompare($1) == .orderedAscending }
     }
+     
     
     public func stratumAtLevel(name: String, level: String) -> Stratum {
         if strata.keys.contains(name) {
@@ -84,7 +86,7 @@ public class DataStore {
         }
         return ret
     }
-    
+     
     
     public func allStrataForLevel( level: String ) -> [String:Stratum ] {
         var ret = [String:Stratum]()
@@ -95,7 +97,7 @@ public class DataStore {
         
         return ret
     }
-    
+     */
 }
 
 extension DataStore {
@@ -106,8 +108,7 @@ extension DataStore {
 
         for row in data {
             let ind = Individual()
-            ind.strata["Region"] = row[0]
-            ind.strata["Population"] = row[1]
+            ind.stratum = row[1]
             if let lat = Double(row[2]),
                let lon = Double(row[3])
             {

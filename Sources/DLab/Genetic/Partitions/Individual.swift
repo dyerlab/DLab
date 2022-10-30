@@ -36,15 +36,17 @@ import CoreLocation
 public class Individual: Codable, Identifiable {
     public var id: UUID
     public var coord: Coordinate?
+    public var loci: [String: Genotype]
+    public var stratum: String
+    public var offspring: String
+    
     public var isSpatial: Bool {
         return coord != nil
     }
-    public var loci: [String: Genotype]
-    public var strata: [String: String]
+    
     public var location: Location? {
-        let name = self.strata["ID", default: self.id.uuidString]
         if let coord = coord {
-            return Location(name: name, coordinate: CLLocationCoordinate2D(coordinate: coord))
+            return Location(name: stratum, coordinate: CLLocationCoordinate2D(coordinate: coord))
         } else {
             return nil
         }
@@ -55,13 +57,15 @@ public class Individual: Codable, Identifiable {
     public init() {
         id = UUID()
         loci = [String: Genotype]()
-        strata = [String: String]()
+        stratum = ""
+        offspring = ""
     }
 
     enum CodingKeys: String, CodingKey {
         case id
         case coord
-        case strata
+        case stratum
+        case offspring
         case loci
     }
 
@@ -69,7 +73,8 @@ public class Individual: Codable, Identifiable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decode(UUID.self, forKey: .id)
         coord = try values.decode(Coordinate.self, forKey: .coord)
-        strata = try values.decode(Dictionary.self, forKey: .strata)
+        stratum = try values.decode(String.self, forKey: .stratum)
+        offspring = try values.decode( String.self, forKey: .offspring)
         loci = try values.decode(Dictionary.self, forKey: .loci)
     }
 
@@ -77,7 +82,8 @@ public class Individual: Codable, Identifiable {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(coord, forKey: .coord)
-        try container.encode(strata, forKey: .strata)
+        try container.encode(stratum, forKey: .stratum)
+        try container.encode(offspring, forKey: .offspring)
         try container.encode(loci, forKey: .loci)
     }
 }
@@ -99,10 +105,11 @@ extension Individual: CustomStringConvertible {
     public var description: String {
         var ret = [String]()
 
-        for key in strata.keys.sorted(by: { $0.compare($1, options: .numeric) == .orderedAscending }) {
-            ret.append(strata[key]!)
+        ret.append(stratum)
+        if( !offspring.isEmpty ) {
+            ret.append( offspring )
         }
-
+        
         if let coord = coord {
             ret.append(String("\(coord)"))
         }
@@ -120,8 +127,8 @@ public extension Individual {
     static func Default() -> Individual {
         let ind = Individual()
         ind.coord = Coordinate(longitude: -77, latitude: 36)
-        ind.strata["Population"] = "RVA"
-        ind.strata["Region"] = "Piedmont"
+        ind.stratum = "RVA"
+
 
         let loci = ["1:1", "1:1", "1:2",
                     "1:1", "1:1", "7:9"]
@@ -139,8 +146,8 @@ public extension Individual {
     static func DefaultMom() -> Individual {
         let ind = Individual()
         
-        ind.strata["ID"] = "Big Bertha"
-        ind.strata["OffID"] = "0"
+        ind.stratum = "Big Bertha"
+        ind.offspring = "0"
         ind.coord = Coordinate(longitude: -77, latitude: 36)
         let loci = ["1:1", "1:2", "1:2"]
         let names = ["LTRS", "WNT", "EN"]
@@ -154,8 +161,8 @@ public extension Individual {
     static func DefaultOffspring() -> Individual {
         let ind = Individual()
         
-        ind.strata["ID"] = "Big Bertha"
-        ind.strata["OffID"] = "1"
+        ind.stratum = "Big Bertha"
+        ind.offspring = "1"
         ind.coord = Coordinate(longitude: -77, latitude: 36)
         
         var nm = Genotype(raw: "1:2")

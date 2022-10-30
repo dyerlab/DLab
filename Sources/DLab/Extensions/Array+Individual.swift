@@ -50,8 +50,23 @@ public extension Array where Element == Individual {
      - Returns: An array of strata in alphabetical order
      */
     var strataKeys: [String] {
-        return first?.strata.keys.sorted(by: { $0.compare($1, options: .numeric) == .orderedAscending }) ?? [String]()
+        if isFamily {
+            return ["Mother","Offspring"]
+        }
+        else {
+            return ["Population"]
+        }
+        // return first?.strata.keys.sorted(by: { $0.compare($1, options: .numeric) == .orderedAscending }) ?? [String]()
     }
+    
+    /**
+     Determines if any the data are adult or family
+     - Returns: A Bool if at least one of the indiviudals has a non-empty value for offspring
+     */
+    var isFamily: Bool {
+        return compactMap { $0.offspring }.count > 0
+    }
+     
 
     /**
      All keys for individual including loci and coordinates.
@@ -87,20 +102,22 @@ public extension Array where Element == Individual {
      - Parameters:
       - named: The name of the stratum of interest.
      - Returns: An array of values with the stratumfo reach indiviudal.
-     */
+     
     func getStrata(named: String) -> [String] {
         return compactMap { $0.strata[named, default: ""] }
     }
+     */
 
     /**
      Get the levels for a specfic stratum
      - Parameters:
       - stratum: The Name of the strtatum
      - Returns: The set of unique values in the stratum
-     */
+    
     func strataLevels(stratum: String) -> [String] {
         return Set<String>(getStrata(named: stratum)).unique()
     }
+     */
 
     /**
      Gets subset of individuals who have specific hierarchical level
@@ -108,10 +125,11 @@ public extension Array where Element == Individual {
         - stratumName: Name of the hierarchical level to look.
         - stratumLevel: The specific level for the stratum of interest
      - Returns: An array of individuals (or empty array) with indiviudals
-     */
+     
     func indiviudalsForStratumLevel(stratumName: String, stratumLevel: String) -> [Individual] {
         let ret = filter { $0.strata[stratumName] == stratumLevel }
 
         return ret
     }
+     */
 }
