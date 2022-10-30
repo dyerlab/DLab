@@ -52,6 +52,10 @@ public class Stratum: Codable {
     public var isFamily: Bool {
         return mother != nil
     }
+    
+    public var isEmpty: Bool {
+        return mother == nil && individuals.count == 0 
+    }
 
     public var count: Int {
         return individuals.count
@@ -70,7 +74,8 @@ public class Stratum: Codable {
             }
             ret.append("Longitude")
             ret.append("Latitude")
-            ret.append(contentsOf: ind.loci.keys.sorted(by: { $0.compare($1, options: .numeric) == .orderedAscending }))
+            ret.append(contentsOf: ind.loci.keys.sorted(by: { $0.compare($1,
+                                                                         options: .numeric) == .orderedAscending }))
         }
         return ret
     }

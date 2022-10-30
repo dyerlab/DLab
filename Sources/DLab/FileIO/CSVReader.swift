@@ -52,7 +52,8 @@ public struct CSVReader {
                     ind.coord = Coordinate(longitude: lon, latitude: lat)
                 }
                 
-                // Put ind into stratum
+                // Add the individual
+                ret.addIndiviudal(ind: ind)
                 
             }
         }

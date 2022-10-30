@@ -71,4 +71,15 @@ class FrequencyTests: XCTestCase {
             print("no frequencies")
         }
     }
+    
+    
+    func testMatrix() throws {
+        let data = Stratum.DefaultStratum()
+        let freqs = data.frequencies["MP20", default: AlleleFrequencies()]
+        let fMat = freqs.asMatrix()
+        XCTAssertEqual( fMat.cols, 2)
+        XCTAssertEqual( fMat.rows, 1)
+        XCTAssertEqual( fMat[0,0], 0.25)
+        XCTAssertEqual( fMat[0,1], 0.75)
+    }
 }

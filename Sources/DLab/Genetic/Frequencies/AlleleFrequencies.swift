@@ -31,6 +31,7 @@
 import Foundation
 
 public struct AlleleFrequencies: Codable {
+    public var genotypes = [String:Double]()
     private var counts = [String: Double]()
     private var N = 0.0
 
@@ -46,8 +47,26 @@ public struct AlleleFrequencies: Codable {
             }
         }
     }
+    
+    public var isEmpty: Bool {
+        return self.N == 0 
+    }
 
     public init() {}
+    
+    public init( freqs: [AlleleFrequencies] ) {
+        for freq in freqs {
+            self.N = self.N + freq.N
+            self.numHets = self.numHets + freq.numHets
+            self.numDiploid = self.numDiploid + freq.numDiploid
+            for allele in freq.alleles {
+                self.counts[ allele ] = self.counts[ allele, default: 0.0 ] + freq.counts[ allele, default: 0.0 ]
+            }
+            for geno in freq.genotypes.keys {
+                self.genotypes[ geno ] = self.genotypes[ geno, default: 0.0] + freq.genotypes[ geno, default: 0.0]
+            }
+        }
+    }
 
     public init(genotypes: [Genotype]) {
         for geno in genotypes {
@@ -62,6 +81,12 @@ public struct AlleleFrequencies: Codable {
     }
 
     public mutating func addGenotype(geno: Genotype) {
+        
+        if !geno.isEmpty && geno.ploidy == .Diploid {
+            self.genotypes[ geno.description ] = self.genotypes[ geno.description, default: 0.0] + 1
+        }
+        
+        
         if geno.ploidy == .Diploid, geno.masking == .NoMasking || geno.masking == .Undefined {
             numDiploid += 1.0
             if geno.isHeterozygote {
@@ -116,6 +141,11 @@ extension AlleleFrequencies: CustomStringConvertible {
         ret += String("N: \(N)\n")
         ret += String("nHets: \(numHets)\n")
         ret += String("nDip: \(numDiploid)\n")
+        
+        ret += String("Genotypes:\n")
+        for key in self.genotypes.keys.sorted() {
+            ret += String(" \(key): \(self.genotypes[key, default: 0.0])\n")
+        }
         return ret
     }
 }
@@ -129,3 +159,20 @@ public extension AlleleFrequencies {
         return freqs
     }
 }
+
+
+extension AlleleFrequencies: MatrixConvertible {
+    
+    public func asMatrix() -> Matrix {
+        let theAlleles = self.alleles
+        let ret = Matrix( 1, theAlleles.count )
+        
+        ret.colNames = theAlleles
+        for i in 0 ..< theAlleles.count {
+            ret[0,i] = frequency(allele: theAlleles[i] )
+        }
+        return ret
+    }
+    
+}
+

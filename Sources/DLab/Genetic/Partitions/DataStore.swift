@@ -37,6 +37,10 @@ public class DataStore {
         return strata.keys.count
     }
     
+    public var isEmpty: Bool {
+        return self.strata.values.compactMap {$0.isEmpty}.allSatisfy( {$0 == true })
+    }
+    
     public var strataKeys: [String] {
         return strata.keys.sorted { $0.localizedStandardCompare($1) == .orderedAscending }
     }
@@ -52,13 +56,69 @@ public class DataStore {
     public var numInds: Int {
         return strata.values.compactMap { $0.count }.reduce( 0, +)
     }
-
+    
     public init() {}
 
-    
     public func stratum( named: String ) -> Stratum {
         return self.strata[named, default: Stratum() ]
     }
+    
+    public func addIndiviudal( ind: Individual ) {
+        let strat = self.strata[ ind.stratum, default: Stratum()]
+        strat.addIndividual(ind: ind )
+        self.strata[ ind.stratum ] = strat
+
+    }
+    
+    public func frequencysFor( locus: String ) -> AlleleFrequencies {
+        let allFreqs = self.strata.values.compactMap { $0.frequencies[locus] }
+        return AlleleFrequencies(freqs: allFreqs )
+    }
+    
+    public func frequencyMatrixFor( locus: String ) -> Matrix {
+        let allFreqs = self.frequencysFor(locus: locus)
+        let alleles = allFreqs.alleles
+        let ret = Matrix( strataKeys.count, alleles.count )
+        ret.colNames = alleles
+        ret.rowNames = strataKeys
+        
+        for key in 0 ..< strataKeys.count {
+            let stratum = strata[ strataKeys[key] ]
+            for allele in 0 ..< alleles.count {
+                
+                if let afreqs = stratum?.frequencies[ locus ] {
+                    ret[key,allele] = afreqs.frequency(allele: alleles[ allele ]  )
+                }
+            }
+        }
+        
+        return ret
+    }
+    
+    public func genotypeMatrixFor( locus: String ) -> Matrix {
+        let allFreqs = self.frequencysFor(locus: locus)
+        let allGenotypes = allFreqs.genotypes.keys.sorted()
+        let ret = Matrix( self.count, allGenotypes.count )
+        ret.colNames = allGenotypes
+        ret.rowNames = strataKeys
+        
+        for row in 0 ..< self.count {
+            let stratum = strata[ strataKeys[ row ] ]
+            if let freq = stratum?.frequencies[locus] {
+                for col in 0 ..< allGenotypes.count {
+                    let geno = allGenotypes[ col ]
+                    let popgeno = freq.genotypes[ geno, default: 0.0 ]
+                    ret[ row, col ] = popgeno
+                }
+            }
+        }
+        
+        return ret
+    }
+    
+    
+    
+    
     /*
     public func strataLevels(name: String ) -> [String] {
         var ret = [String]()
@@ -124,12 +184,14 @@ extension DataStore {
             ind.loci["ATPS"] = Genotype(raw: row[10])
             ind.loci["MP20"] = Genotype(raw: row[11])
             
-            if !store.strata.keys.contains( row[1] ) {
-                store.strata[ row[1] ] = Stratum()
-            }
+            let stratum = store.strata[ ind.stratum, default: Stratum() ]
+            stratum.addIndividual(ind: ind )
+            store.strata[ ind.stratum ] = stratum
 
-            store.strata[row[1]]!.addIndividual(ind: ind)
         }
+        
+        
+        
         return store
     }
 
