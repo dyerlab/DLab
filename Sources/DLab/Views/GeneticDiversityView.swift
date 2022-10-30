@@ -30,14 +30,50 @@
 
 import SwiftUI
 
-struct AllelicDiversityView: View {
+struct GeneticDiversityView: View {
+    @State private var displayType: OutputDisplayType = .Graphical
+    let freqs: AlleleFrequencies
+    let locus: String
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            
+            // header
+            HStack {
+                Text("Genetic Diversity: \(self.locus)")
+                    .font(.largeTitle)
+                Spacer()
+                HStack {
+                    Picker("Output:", selection: $displayType) {
+                        ForEach(OutputDisplayType.allCases, id: \.self) { value in
+                            Text( "\(value.rawValue)").tag( value )
+                        }
+                    }
+                    .pickerStyle( SegmentedPickerStyle() )
+                    .fixedSize()
+                }
+                
+            }
+            switch displayType {
+            case .Graphical:
+                Text("Graphical Output")
+                    .bold()
+            case .Tabular:
+                Text("Tabular Output")
+                    .bold()
+            }
+            
+            
+            
+        }
+        .padding()
+        
     }
 }
 
-struct AllelicDiversityView_Previews: PreviewProvider {
+struct GeneticDiversityView_Previews: PreviewProvider {
     static var previews: some View {
-        AllelicDiversityView()
+        GeneticDiversityView(freqs: AlleleFrequencies.Default(),
+                             locus: "LTRS")
     }
 }

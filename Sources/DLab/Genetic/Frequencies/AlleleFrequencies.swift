@@ -154,6 +154,7 @@ public extension AlleleFrequencies {
     static func Default() -> AlleleFrequencies {
         let data = Stratum.DefaultStratum()
         let locus = data.individuals.locusKeys.first!
+        print("\(locus)")
         let genos = data.individuals.getGenotypes(named: locus)
         let freqs = AlleleFrequencies(genotypes: genos)
         return freqs

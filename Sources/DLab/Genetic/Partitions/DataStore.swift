@@ -29,10 +29,10 @@
 
 import Foundation
 
-public class DataStore {
+public class DataStore: Codable  {
     public var species: String = ""
     private var strata = [String: Stratum]()
-
+    
     public var count: Int {
         return strata.keys.count
     }
@@ -58,7 +58,7 @@ public class DataStore {
     }
     
     public init() {}
-
+    
     public func stratum( named: String ) -> Stratum {
         return self.strata[named, default: Stratum() ]
     }
@@ -67,7 +67,7 @@ public class DataStore {
         let strat = self.strata[ ind.stratum, default: Stratum()]
         strat.addIndividual(ind: ind )
         self.strata[ ind.stratum ] = strat
-
+        
     }
     
     public func frequencysFor( locus: String ) -> AlleleFrequencies {
@@ -112,52 +112,11 @@ public class DataStore {
                 }
             }
         }
-        
         return ret
     }
     
     
     
-    
-    /*
-    public func strataLevels(name: String ) -> [String] {
-        var ret = [String]()
-        
-        for stratum in self.strata.values {
-            ret.append(contentsOf: stratum.individuals.compactMap { $0.strata[name] } )
-        }
-        
-        return Set(ret).unique().sorted { $0.localizedStandardCompare($1) == .orderedAscending }
-    }
-     
-    
-    public func stratumAtLevel(name: String, level: String) -> Stratum {
-        if strata.keys.contains(name) {
-            return strata[name, default: Stratum()]
-        }
-
-        let ret = Stratum()
-        for key in strata.keys {
-            if let individuals = strata[key]?.individuals.indiviudalsForStratumLevel(stratumName: name, stratumLevel: level) {
-                for ind in individuals {
-                    ret.addIndividual(ind: ind)
-                }
-            }
-        }
-        return ret
-    }
-     
-    
-    public func allStrataForLevel( level: String ) -> [String:Stratum ] {
-        var ret = [String:Stratum]()
-        
-        for name in strataLevels(name: level) {
-            ret[name] = stratumAtLevel(name: name, level: level )
-        }
-        
-        return ret
-    }
-     */
 }
 
 extension DataStore {
@@ -165,7 +124,7 @@ extension DataStore {
     public static func Default() -> DataStore {
         let store = DataStore()
         let data = store.bajaData()
-
+        
         for row in data {
             let ind = Individual()
             ind.stratum = row[1]
@@ -174,7 +133,7 @@ extension DataStore {
             {
                 ind.coord = Coordinate(longitude: lon, latitude: lat)
             }
-
+            
             ind.loci["LTRS"] = Genotype(raw: row[4])
             ind.loci["WNT"] = Genotype(raw: row[5])
             ind.loci["EN"] = Genotype(raw: row[6])
@@ -187,15 +146,14 @@ extension DataStore {
             let stratum = store.strata[ ind.stratum, default: Stratum() ]
             stratum.addIndividual(ind: ind )
             store.strata[ ind.stratum ] = stratum
-
+            
         }
-        
-        
         
         return store
     }
-
-    private func bajaData() -> [[String]] {
+    
+    
+    private func mainClade() -> [[String]] {
         return [
             ["NBP", "88", "29.32544972", "-114.2935239", "1:1", "", "2:4", "1:2", "", "", "9:9", "7:7"],
             ["NBP", "88", "29.32543502", "-114.2934676", "1:1", "1:3", "1:1", "1:1", "1:1", "8:9", "9:9", "7:7"],
@@ -523,7 +481,12 @@ extension DataStore {
             ["SBP", "98", "23.0757895", "-109.6486119", "2:2", "3:3", "1:1", "1:1", "2:2", "6:6", "5:5", "10:11"],
             ["SBP", "98", "23.07574123", "-109.6486615", "2:2", "1:1", "2:2", "1:1", "2:2", "5:5", "3:3", "18:18"],
             ["SBP", "98", "23.07576346", "-109.6486331", "2:2", "1:1", "2:2", "1:1", "2:2", "5:5", "3:3", "18:18"],
-            ["SBP", "98", "23.07575572", "-109.6486634", "2:2", "1:1", "2:2", "1:1", "2:2", "5:5", "3:3", "18:18"],
+            ["SBP", "98", "23.07575572", "-109.6486634", "2:2", "1:1", "2:2", "1:1", "2:2", "5:5", "3:3", "18:18"]
+        ]
+    }
+    
+    private func sonoranData() -> [[String]] {
+        return [
             ["SON", "101", "27.90511059", "-110.5743491", "1:2", "", "1:1", "", "", "", "2:2", ""],
             ["SON", "101", "27.90512369", "-110.5743223", "2:2", "1:1", "1:1", "1:1", "", "", "2:2", "13:13"],
             ["SON", "101", "27.90518842", "-110.5743386", "1:2", "", "1:1", "1:2", "", "", "9:9", ""],
@@ -563,5 +526,12 @@ extension DataStore {
             ["SON", "102", "26.38023371", "-109.1262476", "1:2", "1:1", "3:3", "1:2", "", "", "2:2", "12:12"],
             ["SON", "102", "26.38020234", "-109.1262803", "2:2", "1:1", "3:3", "1:2", "", "", "2:2", "3:13"]
         ]
+        
+    }
+    
+    private func bajaData() -> [[String]] {
+        var ret = mainClade()
+        ret.append(contentsOf: sonoranData() )
+        return ret
     }
 }
