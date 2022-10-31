@@ -32,65 +32,69 @@ import SwiftUI
 
 struct GeneticDiversitySummaryView: View {
     @State private var displayType: OutputDisplayType = .Tabular
-    @State private var visibiltyType: StrataVisibilityType = .AllData
-    let freqs: AlleleFrequencies
+    @State private var visibiltyType: StrataVisibilityType = .Strata
+    let data: DataStore
     let locus: String
     
     var body: some View {
+        
         VStack {
-            Text("Genetic Diversity: \(self.locus)")
-                .font(.largeTitle)
-            // header
-            HStack {
+            VStack {
+                Text("Genetic Diversity: \(self.locus)")
+                    .font(.largeTitle)
+                // header
+                HStack {
+                    
+                    Picker("Levels:", selection: $visibiltyType) {
+                        ForEach(StrataVisibilityType.allCases, id: \.self) { value in
+                            Text( "\(value.rawValue)").tag( value )
+                        }
+                    }
+                    .pickerStyle( SegmentedPickerStyle() )
+                    .fixedSize()
+                    
+                    Spacer()
+                    
+                    Picker("Output:", selection: $displayType) {
+                        ForEach(OutputDisplayType.allCases, id: \.self) { value in
+                            Text( "\(value.rawValue)").tag( value )
+                        }
+                    }
+                    .pickerStyle( SegmentedPickerStyle() )
+                    .fixedSize()
+                }
                 
-                Picker("Levels:", selection: $visibiltyType) {
-                    ForEach(StrataVisibilityType.allCases, id: \.self) { value in
-                        Text( "\(value.rawValue)").tag( value )
+                switch displayType {
+                case .Graphical:
+                    if visibiltyType == .AllData {
+                        Text("Graphical for All Data")
+                            .bold()
+                    } else {
+                        Text("Graphical for partitioned Data")
+                            .bold()
+                    }
+                case .Tabular:
+                    if visibiltyType == .AllData {
+                        DiversityTableView(diversity: [ data.frequenciesFor( locus: locus).totalGeneticDiversity()])
+                    } else {
+                        DiversityTableView( diversity: data.diversityFor(locus: locus) )
                     }
                 }
-                .pickerStyle( SegmentedPickerStyle() )
-                .fixedSize()
-                
                 Spacer()
                 
-                Picker("Output:", selection: $displayType) {
-                    ForEach(OutputDisplayType.allCases, id: \.self) { value in
-                        Text( "\(value.rawValue)").tag( value )
-                    }
-                }
-                .pickerStyle( SegmentedPickerStyle() )
-                .fixedSize()
-                
-                
             }
-            switch displayType {
-            case .Graphical:
-                Text("Graphical Output")
-                    .bold()
-            case .Tabular:
-                Text("Tabular Output")
-                    .bold()
-            }
-            switch visibiltyType {
-            case .AllData:
-                Text("Combining All Data")
-                    .bold()
-            case .Strata:
-                Text("By Individual Stratum")
-                    .bold()
-            }
-            
-            
-            
+            .padding()
+            Spacer()
+            Spacer()
+
         }
-        .padding()
         
     }
 }
 
 struct GeneticDiversityView_Previews: PreviewProvider {
     static var previews: some View {
-        GeneticDiversitySummaryView(freqs: AlleleFrequencies.Default(),
+        GeneticDiversitySummaryView(data: DataStore.Default(),
                              locus: "LTRS")
     }
 }

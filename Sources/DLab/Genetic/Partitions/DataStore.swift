@@ -60,11 +60,11 @@ public class DataStore: Codable  {
     public init() {}
     
     public func stratum( named: String ) -> Stratum {
-        return self.strata[named, default: Stratum() ]
+        return self.strata[named, default: Stratum(name: named) ]
     }
     
     public func addIndiviudal( ind: Individual ) {
-        let strat = self.strata[ ind.stratum, default: Stratum()]
+        let strat = self.strata[ ind.stratum, default: Stratum(name: ind.stratum)]
         strat.addIndividual(ind: ind )
         self.strata[ ind.stratum ] = strat
         
@@ -74,13 +74,17 @@ public class DataStore: Codable  {
         return strata.values.compactMap { $0.frequencies[locus] }
     }
     
-    public func diversityFor( locus: String ) -> [String, GeneticDiversity] {
-        let ret = [String, GeneticDiversity]()
+    public func diversityFor( locus: String ) -> [GeneticDiversity] {
+        var ret = [GeneticDiversity]()
         for key in strataKeys {
-            let freq = strata[key].frequencies
-            ret[key] = GeneticDiversity(frequencies: freq ) 
+            if let stratum = strata[key],
+               let freq = stratum.frequencies[locus] {
+                var div = GeneticDiversity(frequencies: freq )
+                div.stratum = key
+                ret.append( div )
+            }
         }
-        return strata.values.compactMap { GeneticDiversity(frequencies: $0.frequencies[locus, default: AlleleFrequencies()] )  }
+        return ret
     }
     
     public func allFrequencysFor( locus: String ) -> AlleleFrequencies {
@@ -108,18 +112,8 @@ public class DataStore: Codable  {
         return ret
     }
     
-    public func diversityMatrixFor( locus: String ) -> Matrix {
-        let allStrata = strataKeys.sorted()
-        let ret = Matrix( allStrata.count, 7 )
-        ret.rowNames = allStrata
-        ret.colNames = ["N","A","A95","Ae","Ho","He","F"]
-        
-        for i in 0 ..< allStrata.count {
-            
-        }
-        
-        return ret
-    }
+
+    
     
     public func genotypeMatrixFor( locus: String ) -> Matrix {
         let allFreqs = self.allFrequencysFor(locus: locus)
@@ -169,7 +163,7 @@ extension DataStore {
             ind.loci["ATPS"] = Genotype(raw: row[10])
             ind.loci["MP20"] = Genotype(raw: row[11])
             
-            let stratum = store.strata[ ind.stratum, default: Stratum() ]
+            let stratum = store.strata[ ind.stratum, default: Stratum(name: ind.stratum) ]
             stratum.addIndividual(ind: ind )
             store.strata[ ind.stratum ] = stratum
             

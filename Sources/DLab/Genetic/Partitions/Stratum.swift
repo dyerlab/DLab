@@ -33,7 +33,7 @@ import CoreLocation
 
 public class Stratum: Codable {
     public var id: UUID = .init()
-    public var name: String = ""
+    public var name: String = "UFDA"
     
     public var mother: Individual?
     public var individuals: [Individual] = []
@@ -80,10 +80,13 @@ public class Stratum: Codable {
         return ret
     }
 
-    public init() {}
+    public init(name: String = "Default") {
+        self.name = name
+    }
 
-    public init(mom: Individual) {
+    public init(mom: Individual, name: String = "Family") {
         mother = mom
+        self.name = name
     }
 }
 
@@ -93,7 +96,9 @@ public extension Stratum {
     func addIndividual(ind: Individual) {
         for locus in ind.loci.keys.sorted() {
             if let geno = ind.loci[locus] {
-                frequencies[locus, default: AlleleFrequencies()].addGenotype(geno: geno)
+                frequencies[locus,
+                            default: AlleleFrequencies(name: self.name,
+                                                              locus: locus)].addGenotype(geno: geno)
             }
         }
         individuals.append(ind)

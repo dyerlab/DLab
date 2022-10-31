@@ -11,7 +11,7 @@ struct MatrixTableView: View {
     let matrix: Matrix
     
     var body: some View {
-        ScrollView {
+        ScrollView( [.horizontal, .vertical] ) {
             Grid {
                 // column header
                 if( !matrix.colNames.isEmpty ) {

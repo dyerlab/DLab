@@ -34,7 +34,7 @@ import CoreLocation
 
 class StratumTests: XCTestCase {
     func testNULL() throws {
-        let stratum = Stratum()
+        let stratum = Stratum(name: "Default")
         XCTAssertEqual(stratum.count, 0)
         XCTAssertEqual(stratum.header, [String]())
     }
@@ -63,7 +63,7 @@ class StratumTests: XCTestCase {
         mom.loci["Loc1"] = Genotype(raw: "A:A")
         mom.loci["Loc2"] = Genotype(raw: "A:B")
 
-        let family = Stratum(mom: mom)
+        let family = Stratum(mom: mom, name: "Default")
 
         let off1 = Individual()
         off1.loci["Loc1"] = Genotype(raw: "A:A")

@@ -32,12 +32,13 @@ import Foundation
 
 public struct AlleleFrequencies: Codable {
     public var locus: String = ""
+    public var stratum: String = ""
     public var genotypes = [String:Double]()
     private var counts = [String: Double]()
     private var N = 0.0
-
     public var numHets = 0.0
     public var numDiploid = 0.0
+    
     public var alleles: [String] {
         get {
             return counts.keys.sorted { $0.localizedStandardCompare($1) == .orderedAscending }
@@ -53,10 +54,13 @@ public struct AlleleFrequencies: Codable {
         return self.N == 0 
     }
 
-    public init() {}
+    public init(name: String, locus: String = "Default") {
+        self.locus = name
+    }
     
     public init( freqs: [AlleleFrequencies] ) {
-        self.locus = "All"
+        self.locus = freqs.first?.locus ?? "Undefined"
+        self.stratum = "All"
         for freq in freqs {
             self.N = self.N + freq.N
             self.numHets = self.numHets + freq.numHets
@@ -70,7 +74,7 @@ public struct AlleleFrequencies: Codable {
         }
     }
 
-    public init(genotypes: [Genotype]) {
+    public init(genotypes: [Genotype], name: String = "Default", locus: String = "None" ) {
         for geno in genotypes {
             addGenotype(geno: geno)
         }
@@ -156,7 +160,6 @@ public extension AlleleFrequencies {
     static func Default() -> AlleleFrequencies {
         let data = Stratum.DefaultStratum()
         let locus = data.individuals.locusKeys.first!
-        print("\(locus)")
         let genos = data.individuals.getGenotypes(named: locus)
         let freqs = AlleleFrequencies(genotypes: genos)
         return freqs

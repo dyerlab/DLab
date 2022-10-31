@@ -34,19 +34,22 @@ struct Node: Codable {
     var label: String = ""
     var size: Double = 0.0
     var edges: [Edge] = [Edge]()
+    var coord: Vector = Vector()
     
     enum CodingKeys: String, CodingKey {
         case id
         case label
         case size
         case edges
+        case coord
     }
     
     init() { }
     
-    init(label: String, size: Double ) {
+    init(label: String, size: Double, coord: Vector = Vector() ) {
         self.label = label
         self.size = size
+        self.coord = coord
     }
 
     init(from decoder: Decoder) throws {
@@ -55,6 +58,7 @@ struct Node: Codable {
         label = try values.decode(String.self, forKey: .label)
         size = try values.decode(Double.self, forKey: .size)
         edges = try values.decode(Array.self, forKey: .edges)
+        coord = try values.decode(Array.self, forKey: .coord)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -63,6 +67,7 @@ struct Node: Codable {
         try container.encode(label, forKey: .label)
         try container.encode(size, forKey: .size)
         try container.encode(edges, forKey: .edges)
+        try container.encode(coord, forKey: .coord )
     }
 }
 
