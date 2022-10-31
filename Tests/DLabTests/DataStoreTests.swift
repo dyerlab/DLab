@@ -64,10 +64,10 @@ class DataStoreTests: XCTestCase {
         XCTAssertEqual( data.numInds, 365 )
         XCTAssertFalse( data.isEmpty )
         
-        let missingFreq = data.frequencysFor(locus: "bob")
+        let missingFreq = data.allFrequencysFor(locus: "bob")
         XCTAssertTrue( missingFreq.isEmpty)
         
-        let fLTRS = data.frequencysFor(locus: "LTRS")
+        let fLTRS = data.allFrequencysFor(locus: "LTRS")
         print("\(fLTRS)")
         XCTAssertEqual( fLTRS.alleles, ["1","2"])
         XCTAssertEqual( fLTRS.frequency(allele: "1"), 381.0 / 730.0 )
@@ -78,7 +78,7 @@ class DataStoreTests: XCTestCase {
         let data = DataStore.Default()
         XCTAssertEqual( data.count, 39 )
         
-        let fMat = data.frequencyMatrixFor(locus: "LTRS")
+        let fMat = data.allFrequencyMatrixFor(locus: "LTRS")
         XCTAssertEqual( data.count, fMat.rows)
         XCTAssertEqual( fMat.colNames, ["1","2"])
     }

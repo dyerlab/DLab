@@ -31,6 +31,7 @@
 import Foundation
 
 public struct AlleleFrequencies: Codable {
+    public var locus: String = ""
     public var genotypes = [String:Double]()
     private var counts = [String: Double]()
     private var N = 0.0
@@ -55,6 +56,7 @@ public struct AlleleFrequencies: Codable {
     public init() {}
     
     public init( freqs: [AlleleFrequencies] ) {
+        self.locus = "All"
         for freq in freqs {
             self.N = self.N + freq.N
             self.numHets = self.numHets + freq.numHets
@@ -169,6 +171,7 @@ extension AlleleFrequencies: MatrixConvertible {
         let ret = Matrix( 1, theAlleles.count )
         
         ret.colNames = theAlleles
+        ret.rowNames = ["All"]
         for i in 0 ..< theAlleles.count {
             ret[0,i] = frequency(allele: theAlleles[i] )
         }

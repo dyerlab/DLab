@@ -30,28 +30,37 @@
 
 import SwiftUI
 
-struct GeneticDiversityView: View {
-    @State private var displayType: OutputDisplayType = .Graphical
+struct GeneticDiversitySummaryView: View {
+    @State private var displayType: OutputDisplayType = .Tabular
+    @State private var visibiltyType: StrataVisibilityType = .AllData
     let freqs: AlleleFrequencies
     let locus: String
     
     var body: some View {
         VStack {
-            
+            Text("Genetic Diversity: \(self.locus)")
+                .font(.largeTitle)
             // header
             HStack {
-                Text("Genetic Diversity: \(self.locus)")
-                    .font(.largeTitle)
-                Spacer()
-                HStack {
-                    Picker("Output:", selection: $displayType) {
-                        ForEach(OutputDisplayType.allCases, id: \.self) { value in
-                            Text( "\(value.rawValue)").tag( value )
-                        }
+                
+                Picker("Levels:", selection: $visibiltyType) {
+                    ForEach(StrataVisibilityType.allCases, id: \.self) { value in
+                        Text( "\(value.rawValue)").tag( value )
                     }
-                    .pickerStyle( SegmentedPickerStyle() )
-                    .fixedSize()
                 }
+                .pickerStyle( SegmentedPickerStyle() )
+                .fixedSize()
+                
+                Spacer()
+                
+                Picker("Output:", selection: $displayType) {
+                    ForEach(OutputDisplayType.allCases, id: \.self) { value in
+                        Text( "\(value.rawValue)").tag( value )
+                    }
+                }
+                .pickerStyle( SegmentedPickerStyle() )
+                .fixedSize()
+                
                 
             }
             switch displayType {
@@ -60,6 +69,14 @@ struct GeneticDiversityView: View {
                     .bold()
             case .Tabular:
                 Text("Tabular Output")
+                    .bold()
+            }
+            switch visibiltyType {
+            case .AllData:
+                Text("Combining All Data")
+                    .bold()
+            case .Strata:
+                Text("By Individual Stratum")
                     .bold()
             }
             
@@ -73,7 +90,7 @@ struct GeneticDiversityView: View {
 
 struct GeneticDiversityView_Previews: PreviewProvider {
     static var previews: some View {
-        GeneticDiversityView(freqs: AlleleFrequencies.Default(),
+        GeneticDiversitySummaryView(freqs: AlleleFrequencies.Default(),
                              locus: "LTRS")
     }
 }

@@ -70,13 +70,26 @@ public class DataStore: Codable  {
         
     }
     
-    public func frequencysFor( locus: String ) -> AlleleFrequencies {
+    public func frequenciesFor(locus: String) -> [AlleleFrequencies] {
+        return strata.values.compactMap { $0.frequencies[locus] }
+    }
+    
+    public func diversityFor( locus: String ) -> [String, GeneticDiversity] {
+        let ret = [String, GeneticDiversity]()
+        for key in strataKeys {
+            let freq = strata[key].frequencies
+            ret[key] = GeneticDiversity(frequencies: freq ) 
+        }
+        return strata.values.compactMap { GeneticDiversity(frequencies: $0.frequencies[locus, default: AlleleFrequencies()] )  }
+    }
+    
+    public func allFrequencysFor( locus: String ) -> AlleleFrequencies {
         let allFreqs = self.strata.values.compactMap { $0.frequencies[locus] }
         return AlleleFrequencies(freqs: allFreqs )
     }
     
-    public func frequencyMatrixFor( locus: String ) -> Matrix {
-        let allFreqs = self.frequencysFor(locus: locus)
+    public func allFrequencyMatrixFor( locus: String ) -> Matrix {
+        let allFreqs = self.allFrequencysFor(locus: locus)
         let alleles = allFreqs.alleles
         let ret = Matrix( strataKeys.count, alleles.count )
         ret.colNames = alleles
@@ -95,8 +108,21 @@ public class DataStore: Codable  {
         return ret
     }
     
+    public func diversityMatrixFor( locus: String ) -> Matrix {
+        let allStrata = strataKeys.sorted()
+        let ret = Matrix( allStrata.count, 7 )
+        ret.rowNames = allStrata
+        ret.colNames = ["N","A","A95","Ae","Ho","He","F"]
+        
+        for i in 0 ..< allStrata.count {
+            
+        }
+        
+        return ret
+    }
+    
     public func genotypeMatrixFor( locus: String ) -> Matrix {
-        let allFreqs = self.frequencysFor(locus: locus)
+        let allFreqs = self.allFrequencysFor(locus: locus)
         let allGenotypes = allFreqs.genotypes.keys.sorted()
         let ret = Matrix( self.count, allGenotypes.count )
         ret.colNames = allGenotypes

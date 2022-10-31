@@ -28,8 +28,11 @@
 //  along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 import Foundation
+import SwiftUI
 
-public struct GeneticDiversity {
+public struct GeneticDiversity: Hashable {
+    public var locus: String = ""
+    public var N: Int = 0
     public var A: Int = 0
     public var A95: Int = 0
     public var Ae: Double = 0.0
@@ -43,6 +46,8 @@ public struct GeneticDiversity {
         let alleles = frequencies.alleles
         let freqs = frequencies.frequencies(alleles: alleles)
 
+        locus = frequencies.locus 
+        N = Int( frequencies.numDiploid )
         A = alleles.count
         A95 = freqs.filter { $0 >= 0.05 }.count
 
@@ -52,12 +57,16 @@ public struct GeneticDiversity {
         Ae = A > 0 ? 1.0 / (1.0 - He) : 0.0
         F = He > 0 ? 1.0 - Ho / He : 0.0
     }
+    
 }
+
+
 
 extension GeneticDiversity: CustomStringConvertible {
     /// Override of description for CustomStringConvertible
     public var description: String {
         var ret = "DiversityParameters: \n"
+        ret += String("N: \(N)\n")
         ret += String("A: \(A)\n")
         ret += String("A95: \(A95)\n")
         ret += String("Ae: \(Ae)\n")
