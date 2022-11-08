@@ -31,7 +31,7 @@ import Foundation
 
 
 public class Graph {
-    private var nodes = Set<Node>()
+    private var nodes = [Node]()
     var isDirected: Bool = false
     
     var count: Int {
@@ -39,9 +39,6 @@ public class Graph {
     }
     
     var numEdges: Int {
-        
-        print("\(self.nodes.compactMap { $0.edges.count } )")
-        
         return self.nodes.compactMap { $0.edges.count }.reduce(0, +)
     }
     
@@ -50,12 +47,11 @@ public class Graph {
     }
     
     func addNode( label: String, size: Double ) {
-        let newNode = Node(label: label, size: size)
-        nodes.insert( newNode )
+        self.addNode(node: Node(label: label, size: size) )
     }
     
     func addNode( node: Node ) {
-        nodes.insert( node )
+        nodes.append( node )
     }
     
     func getNode( label: String ) -> Node? {
@@ -63,16 +59,20 @@ public class Graph {
     }
     
     func addEdge( from: String, to: String, weight: Double ) {
-        guard var fromNode = getNode(label: from) else { return }
-        guard var toNode = getNode(label: to) else { return }
-        fromNode.edges.append( Edge(node: toNode, weight: weight ))
-        print(" adding \(from) -> \(to) (now with \(fromNode.edges.count))")
-        if !self.isDirected {
-            toNode.edges.append( Edge(node: fromNode, weight: weight ))
-            print(" adding \(from) <- \(to) (now with \(toNode.edges.count))")
-            nodes.insert( toNode )
+        
+        if var fromNode = getNode(label: from),
+           var toNode = getNode(label: to) {
+            print(" adding \(from) -> \(to) (now with \(fromNode.edges.count))")
+            let ftEdge = Edge(node: toNode, weight: weight )
+            print( "\(ftEdge)")
+            fromNode.edges.append( ftEdge )
+            if !isDirected {
+                toNode.edges.append( Edge(node: toNode, weight: weight ) )
+                print(" adding \(from) <- \(to) (now with \(toNode.edges.count))")
+            }
+            
+            print("Graph now has \(self.numEdges) edges")
         }
-        nodes.insert( fromNode )
     }
     
     
