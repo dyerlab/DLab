@@ -39,6 +39,9 @@ public class Graph {
     }
     
     var numEdges: Int {
+        
+        print("\(self.nodes.compactMap { $0.edges.count } )")
+        
         return self.nodes.compactMap { $0.edges.count }.reduce(0, +)
     }
     
@@ -63,9 +66,13 @@ public class Graph {
         guard var fromNode = getNode(label: from) else { return }
         guard var toNode = getNode(label: to) else { return }
         fromNode.edges.append( Edge(node: toNode, weight: weight ))
+        print(" adding \(from) -> \(to) (now with \(fromNode.edges.count))")
         if !self.isDirected {
             toNode.edges.append( Edge(node: fromNode, weight: weight ))
+            print(" adding \(from) <- \(to) (now with \(toNode.edges.count))")
+            nodes.insert( toNode )
         }
+        nodes.insert( fromNode )
     }
     
     
