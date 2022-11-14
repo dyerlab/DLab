@@ -39,6 +39,7 @@ public class Graph {
     }
     
     var numEdges: Int {
+        print("numEdges: \(self.nodes.compactMap { $0.edges.count })")
         return self.nodes.compactMap { $0.edges.count }.reduce(0, +)
     }
     
