@@ -73,5 +73,24 @@ class IndividualTests: XCTestCase {
         XCTAssertEqual( ind, ind2 )
         
     }
+    
+    
+    
+    func testMoms() throws {
+        
+        let mom = Individual.DefaultMom()
+        let off = Individual.DefaultOffspring()
+        
+        print("\(mom)")
+        print("\(off)")
+        
+        XCTAssertTrue( mom.isSpatial )
+        XCTAssertTrue( off.isSpatial )
+        
+        
+        
+    }
+    
+    
 
 }

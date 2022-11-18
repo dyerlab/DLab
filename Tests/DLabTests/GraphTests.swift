@@ -40,6 +40,8 @@ class GraphTests: XCTestCase {
         XCTAssertEqual(graphNull.count, 0)
     }
 
+    
+    /*
     func testGraphDefault() throws {
         let graph = Graph.DefaultGraph()
         print("The Graph: \(graph), \(graph.count), \(graph.numEdges)")
@@ -112,6 +114,6 @@ class GraphTests: XCTestCase {
 */
     }
  
- 
+ */
     
 }

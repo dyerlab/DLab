@@ -33,6 +33,7 @@ import XCTest
 import CoreLocation
 
 class StratumTests: XCTestCase {
+    
     func testNULL() throws {
         let stratum = Stratum(name: "Default")
         XCTAssertEqual(stratum.count, 0)
@@ -70,9 +71,9 @@ class StratumTests: XCTestCase {
         off1.loci["Loc2"] = Genotype(raw: "A:B")
 
         family.addOffspring(offspring: off1)
-        XCTAssertEqual(off1.loci["Loc1", default: Genotype()].masking, .MotherLeft)
+        XCTAssertEqual( off1.loci["Loc1", default: Genotype()].masking, .MotherLeft )
+        XCTAssertEqual( off1.loci["Loc2", default: Genotype()].masking, .Undefined )
 
-        print("famof1:\n\(family)")
     }
 
     func testDefaultFamily() throws {
@@ -105,6 +106,8 @@ class StratumTests: XCTestCase {
                            [9.0 / 23.0, 5.0 / 23.0, 9.0 / 23.0])
             XCTAssertEqual(freq.numHets, 8.0)
             XCTAssertEqual(freq.numDiploid, 8.0)
+        } else {
+            print("cf125 frequency not estimated.")
         }
     }
     
