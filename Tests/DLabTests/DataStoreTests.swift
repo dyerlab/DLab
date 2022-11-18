@@ -93,4 +93,15 @@ class DataStoreTests: XCTestCase {
         
     }
 
+    
+    
+    func testDefaultFamily() throws {
+    
+        let data = DataStore.DefaultFamily()
+        
+        XCTAssertEqual( data.count, 59)
+        
+    }
+    
+    
 }
