@@ -29,7 +29,8 @@
 
 import Foundation
 
-public class DataStore: Codable  {
+public class DataStore: Codable, Identifiable  {
+    public var id = UUID()
     public var species: String = ""
     private var strata = [String: Stratum]()
     
@@ -112,9 +113,6 @@ public class DataStore: Codable  {
         return ret
     }
     
-
-    
-    
     public func genotypeMatrixFor( locus: String ) -> Matrix {
         let allFreqs = self.allFrequencysFor(locus: locus)
         let allGenotypes = allFreqs.genotypes.keys.sorted()
@@ -135,9 +133,13 @@ public class DataStore: Codable  {
         return ret
     }
     
-    
-    
 }
+
+
+
+
+
+
 
 extension DataStore {
     

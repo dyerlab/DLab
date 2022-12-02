@@ -31,7 +31,7 @@ import MapKit
 import Foundation
 import CoreLocation
 
-public class Stratum: Codable {
+public class Stratum: Codable, Identifiable {
     public var id: UUID = .init()
     public var name: String = "UFDA"
     
