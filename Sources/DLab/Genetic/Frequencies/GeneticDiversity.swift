@@ -54,7 +54,7 @@ public struct GeneticDiversity: Hashable {
         A95 = freqs.filter { $0 >= 0.05 }.count
 
         let p = frequencies.frequencies(alleles: alleles).map { $0 * $0 }
-        He = 1.0 - p.reduce(0.0, +)
+        He = A > 0 ? 1.0 - p.reduce(0.0, +) : 0.0 
         Ho = frequencies.numDiploid > 0 ? frequencies.numHets / frequencies.numDiploid : 0.0
         Ae = A > 0 ? 1.0 / (1.0 - He) : 0.0
         F = He > 0 ? 1.0 - Ho / He : 0.0

@@ -82,9 +82,9 @@ public struct Genotype: Codable, Equatable, CustomStringConvertible {
             return .Missing
         } else if left.isEmpty || right.isEmpty {
             return .Haploid
-        } else {
-            return .Diploid
         }
+        
+        return .Diploid
     }
 
     /// Default initializer
