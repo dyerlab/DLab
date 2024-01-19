@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0281ED2B5AF5280031093D /* Species.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0281EC2B5AF5280031093D /* Species.swift */; };
+		2A0281EF2B5AF5C40031093D /* Locus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0281EE2B5AF5C40031093D /* Locus.swift */; };
 		2A7A39BB2B5AF02A004DF3A1 /* dlabApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7A39BA2B5AF02A004DF3A1 /* dlabApp.swift */; };
 		2A7A39BD2B5AF02A004DF3A1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7A39BC2B5AF02A004DF3A1 /* ContentView.swift */; };
 		2A7A39BF2B5AF02A004DF3A1 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A7A39BE2B5AF02A004DF3A1 /* Item.swift */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A0281EC2B5AF5280031093D /* Species.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Species.swift; sourceTree = "<group>"; };
+		2A0281EE2B5AF5C40031093D /* Locus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locus.swift; sourceTree = "<group>"; };
 		2A7A39B72B5AF02A004DF3A1 /* dlab.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = dlab.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A7A39BA2B5AF02A004DF3A1 /* dlabApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dlabApp.swift; sourceTree = "<group>"; };
 		2A7A39BC2B5AF02A004DF3A1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,6 +109,8 @@
 				2A7A39C22B5AF02B004DF3A1 /* dlab.entitlements */,
 				2A7A39C62B5AF02B004DF3A1 /* Info.plist */,
 				2A7A39C32B5AF02B004DF3A1 /* Preview Content */,
+				2A0281EC2B5AF5280031093D /* Species.swift */,
+				2A0281EE2B5AF5C40031093D /* Locus.swift */,
 			);
 			path = dlab;
 			sourceTree = "<group>";
@@ -264,6 +270,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A0281EF2B5AF5C40031093D /* Locus.swift in Sources */,
+				2A0281ED2B5AF5280031093D /* Species.swift in Sources */,
 				2A7A39BD2B5AF02A004DF3A1 /* ContentView.swift in Sources */,
 				2A7A39BF2B5AF02A004DF3A1 /* Item.swift in Sources */,
 				2A7A39BB2B5AF02A004DF3A1 /* dlabApp.swift in Sources */,
